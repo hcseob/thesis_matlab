@@ -17,17 +17,16 @@ threshold = 0.2;
 bits = 7;
 num_taps = 2;
 
-for k = 1:3
-    delay_cells{k} = pade_sys(k, delay);
-    delay_cells{k+3} = bessel_sys(k, delay);
-end
-
 delays = logspace(0, 2, 40)*1e-12;
-for n = 1:length(delay_cells)
+for n = 1:6
     for m = 1:length(delays)
         % create delay pulse family
         delay = delays(m);
-        delay_cell = delay_cells{n};
+        if n <= 3
+            delay_cell = pade_sys(n, delay);
+        else
+            delay_cell = bessel_sys(n-3, delay);
+        end
         clear ps;
         for j = 1:num_taps
             ps(:, j) = lsim((delay_cell*rc)^(j-1)*rc^2, pulse, t);
@@ -44,22 +43,25 @@ for n = 1:length(delay_cells)
     end
 end
 %%
-figure;
-subplot(211);
-semilogx(delays/1e-12, pmr_opts(:, 1), '-k', 'linewidth', 2); hold all;
-semilogx(delays/1e-12, pmr_opts_nothresh(:, 1), '-k');
-semilogx(delays/1e-12, ones(size(delays))*pmr_ch, '--k'); hold all;
+delay_types = {'pade1', 'pade2', 'pade3', 'bessel1', 'bessel2', 'bessel3'};
+for n = 1:6
+    figure;
+    subplot(211);
+    semilogx(delays/1e-12, pmr_opts(:, n), '-k', 'linewidth', 2); hold all;
+    semilogx(delays/1e-12, pmr_opts_nothresh(:, n), '-k');
+    semilogx(delays/1e-12, ones(size(delays))*pmr_ch, '--k'); hold all;
 
-xlabel('Delay Time [ps]');
-ylabel('PMR');
+    xlabel('Delay Time [ps]');
+    ylabel('PMR');
 
-ampls(1:15, :) = threshold;
-subplot(212);
-semilogx(delays, ampls(:, 1), '-k', 'linewidth', 2); hold all;
-semilogx(delays, ampls_nothresh(:, 1), '-k');
-xlabel('Delay Time [ps]');
-ylabel('Main Cursor Scale');
-print('-depsc', './figures/one_tap_delay_sweep');
+    ampls(1:15, :) = threshold;
+    subplot(212);
+    semilogx(delays, ampls(:, n), '-k', 'linewidth', 2); hold all;
+    semilogx(delays, ampls_nothresh(:, n), '-k');
+    xlabel('Delay Time [ps]');
+    ylabel('Main Cursor Scale');
+    print('-depsc', ['./figures/one_tap_delay_sweep_', delay_types{n}]);
+end
 %%
 figure; hold all;
 plot(ps*coeffs);
