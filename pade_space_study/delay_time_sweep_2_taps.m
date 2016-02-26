@@ -1,4 +1,4 @@
-function single_delay_various_channels
+function delay_time_sweep_2_taps
 run('~/thesis/matlab/thesis.m');
 load('../../data/channels/channels.mat');
 
@@ -38,7 +38,7 @@ xlabel('x2', 'fontsize', 14);
 ylabel('y2', 'fontsize', 14); 
 set(gca, 'fontsize', 12);
 
-print('-depsc', './figures/one_tap_3_channels');
+print('-depsc', './figures/delay_time_sweep_2_taps');
 
 end
 
