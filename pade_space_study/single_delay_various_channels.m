@@ -24,8 +24,8 @@ semilogx(delays/1e-12, pmr_ibm/pmr_ibm_bl, '-k', 'linewidth', 2); hold all;
 % semilogx(delays/1e-12, pmr_nel1/pmr_nel1_bl); hold all;
 semilogx(delays/1e-12, pmr_nel2/pmr_nel2_bl, '--', 'color', stanford_red, 'linewidth', 2); hold all;
 semilogx(delays/1e-12, pmr_nel3/pmr_nel3_bl, 'o-', 'color', new_blue, 'linewidth', 2); hold all;
-xlabel('xl', 'fontsize', 14); 
-ylabel('yl', 'fontsize', 14); 
+xlabel('x1', 'fontsize', 14); 
+ylabel('y1', 'fontsize', 14); 
 set(gca, 'fontsize', 12);
 
 subplot(212);
@@ -34,8 +34,8 @@ semilogx(delays/1e-12, amp_ibm, '-k', 'linewidth', 2); hold all;
 % semilogx(delays/1e-12, amp_nel1); hold all;
 semilogx(delays/1e-12, amp_nel2, '--', 'color', stanford_red, 'linewidth', 2); hold all;
 semilogx(delays/1e-12, amp_nel3, 'o-', 'color', new_blue, 'linewidth', 2); hold all;
-xlabel('xl', 'fontsize', 14); 
-ylabel('yl', 'fontsize', 14); 
+xlabel('x2', 'fontsize', 14); 
+ylabel('y2', 'fontsize', 14); 
 set(gca, 'fontsize', 12);
 
 print('-depsc', './figures/one_tap_3_channels');
