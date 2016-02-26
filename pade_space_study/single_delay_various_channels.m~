@@ -1,0 +1,46 @@
+function single_delay_various_channels
+load('../../data/channels/channels.mat');
+
+pulse = p_norm.nel0;
+pmr_bl = pmr_best_offset(pulse);
+t = p_norm.t;
+
+% num_taps = 2; 
+% bits = 5;
+% 
+% delays = logspace(0, 2, 40)*1e-12;
+% for k = 1:length(delays)
+%     delay = delays(k); 
+% 
+%     delay_cell = bessel_sys(1, delay);
+%     for j = 1:num_taps
+%         ps(:, j) = lsim((delay_cell)^(j-1), pulse, t);
+%     end
+%     c = brute_force_pmr_opt(ps, bits, 0.1);
+%     amp(k) = max(ps*c);
+%     pmr(k) = pmr_best_offset(ps*c);
+% end
+
+[amp, pmr, c] = delay_sweep(pulse)
+figure;
+semilogx(delays/1e-12, pmr); hold all;
+semilogx(delays/1e-12, pmr_bl*ones(size(delays))); hold all;
+
+end
+
+function [amp, pmr, c] = delay_sweep(pulse, t)
+num_taps = 2; 
+bits = 5;
+delays = logspace(0, 2, 40)*1e-12;
+for k = 1:length(delays)
+    delay = delays(k); 
+    delay_cell = bessel_sys(1, delay);
+    for j = 1:num_taps
+        ps(:, j) = lsim((delay_cell)^(j-1), pulse, t);
+    end
+    c = brute_force_pmr_opt(ps, bits, 0.1);
+    amp(k) = max(ps*c);
+    pmr(k) = pmr_best_offset(ps*c);
+end
+
+end
