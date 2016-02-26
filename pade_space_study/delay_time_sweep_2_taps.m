@@ -45,7 +45,7 @@ end
 function [amp, pmr, c, delays] = delay_sweep(pulse, t)
 num_taps = 2; 
 bits = 5;
-delays = logspace(0, 2, 40)*1e-12;
+delays = logspace(0, 2, 20)*1e-12;
 for k = 1:length(delays)
     delay = delays(k); 
     delay_cell = bessel_sys(1, delay);
