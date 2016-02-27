@@ -23,20 +23,20 @@ subplot(211);
 plot(amp_lim, pmrs(:, 3)/pmr_bl, '-k', 'linewidth', 2); hold all;
 plot(amp_lim, pmrs(:, 4)/pmr_bl, '--', 'color', stanford_red, 'linewidth', 2); hold all;
 plot(amp_lim, pmrs(:, 5)/pmr_bl, 'o-', 'color', new_blue, 'linewidth', 2); hold all;
-xlabel('Attenuation Lower Bound', 'fontsize', 14); 
-ylabel('PMR', 'fontsize', 14); 
+xlabel('Attenuation Lower Bound', 'fontsize', 18); 
+ylabel('PMR', 'fontsize', 18); 
 ylim([1, 4])
-set(gca, 'fontsize', 12);
+set(gca, 'fontsize', 14);
 
 subplot(212);
 plot(amp_lim, amps(:, 3), '-k', 'linewidth', 2); hold all;
 plot(amp_lim, amps(:, 4), '--', 'color', stanford_red, 'linewidth', 2); hold all;
 plot(amp_lim, amps(:, 5), 'o-', 'color', new_blue, 'linewidth', 2); hold all;
 plot(amp_lim, amp_lim, '--k', 'linewidth', 2);
-xlabel('Attenuation Lower Bound', 'fontsize', 14); 
-ylabel('Attenuation', 'fontsize', 14); 
+xlabel('Attenuation Lower Bound', 'fontsize', 18); 
+ylabel('Attenuation', 'fontsize', 18); 
 ylim([0, 1])
-set(gca, 'fontsize', 12);
+set(gca, 'fontsize', 14);
 
 print('-depsc', './figures/amplitude_sweep');
 
