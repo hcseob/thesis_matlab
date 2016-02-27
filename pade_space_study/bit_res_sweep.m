@@ -4,7 +4,7 @@ load('../../data/channels/channels.mat');
 
 pmr_bl = pmr_best_offset(p_norm.nel2);
 
-run_sweeps = true;
+run_sweeps = false;
 if run_sweeps
     N = 5;
     amps = zeros(N, 5);

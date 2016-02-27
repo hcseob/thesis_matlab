@@ -4,7 +4,7 @@ load('../../data/channels/channels.mat');
 
 pmr_bl = pmr_best_offset(p_norm.nel2);
 
-run_sweeps = true;
+run_sweeps = false;
 if run_sweeps
     N = 20;
     amps = zeros(N, 5);
@@ -23,8 +23,8 @@ subplot(211);
 plot(amp_lim, pmrs(:, 3)/pmr_bl, '-k', 'linewidth', 2); hold all;
 plot(amp_lim, pmrs(:, 4)/pmr_bl, '--', 'color', stanford_red, 'linewidth', 2); hold all;
 plot(amp_lim, pmrs(:, 5)/pmr_bl, 'o-', 'color', new_blue, 'linewidth', 2); hold all;
-xlabel('x1', 'fontsize', 14); 
-ylabel('y1', 'fontsize', 14); 
+xlabel('Attenuation Lower Bound', 'fontsize', 14); 
+ylabel('PMR', 'fontsize', 14); 
 ylim([1, 4])
 set(gca, 'fontsize', 12);
 
@@ -33,8 +33,8 @@ plot(amp_lim, amps(:, 3), '-k', 'linewidth', 2); hold all;
 plot(amp_lim, amps(:, 4), '--', 'color', stanford_red, 'linewidth', 2); hold all;
 plot(amp_lim, amps(:, 5), 'o-', 'color', new_blue, 'linewidth', 2); hold all;
 plot(amp_lim, amp_lim, '--k', 'linewidth', 2);
-xlabel('x2', 'fontsize', 14); 
-ylabel('y2', 'fontsize', 14); 
+xlabel('Attenuation Lower Bound', 'fontsize', 14); 
+ylabel('Attenuation', 'fontsize', 14); 
 ylim([0, 1])
 set(gca, 'fontsize', 12);
 
