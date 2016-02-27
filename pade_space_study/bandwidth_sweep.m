@@ -26,7 +26,7 @@ semilogx(BWs/1e9, pmrs(:, 5)/pmr_bl, 'o-', 'color', new_blue, 'linewidth', 2); h
 xlabel('x1', 'fontsize', 14); 
 ylabel('y1', 'fontsize', 14); 
 ylim([1, 4])
-set(gca, 'fontsize', 12);
+set(gca, 'fontsize', 14);
 
 subplot(212);
 semilogx(BWs/1e9, amps(:, 3), '-k', 'linewidth', 2); hold all;
@@ -35,7 +35,7 @@ semilogx(BWs/1e9, amps(:, 5), 'o-', 'color', new_blue, 'linewidth', 2); hold all
 xlabel('x2', 'fontsize', 14); 
 ylabel('y2', 'fontsize', 14); 
 ylim([0, 1])
-set(gca, 'fontsize', 12);
+set(gca, 'fontsize', 14);
 
 print('-depsc', './figures/bandwidth_sweep');
 

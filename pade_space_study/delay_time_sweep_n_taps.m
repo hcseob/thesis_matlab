@@ -25,7 +25,7 @@ semilogx(delays/1e-12, pmrs(:, 4)/pmr_bl, '--', 'color', stanford_red, 'linewidt
 semilogx(delays/1e-12, pmrs(:, 5)/pmr_bl, 'o-', 'color', new_blue, 'linewidth', 2); hold all;
 xlabel('x1', 'fontsize', 14); 
 ylabel('y1', 'fontsize', 14); 
-set(gca, 'fontsize', 12);
+set(gca, 'fontsize', 14);
 ylim([1, 4]);
 subplot(212);
 semilogx(delays/1e-12, amps(:, 3), '-k', 'linewidth', 2); hold all;
@@ -33,7 +33,7 @@ semilogx(delays/1e-12, amps(:, 4), '--', 'color', stanford_red, 'linewidth', 2);
 semilogx(delays/1e-12, amps(:, 5), 'o-', 'color', new_blue, 'linewidth', 2); hold all;
 xlabel('x2', 'fontsize', 14); 
 ylabel('y2', 'fontsize', 14); 
-set(gca, 'fontsize', 12);
+set(gca, 'fontsize', 14);
 ylim([0, 1]);
 print('-depsc', './figures/delay_time_sweep_n_taps');
 
