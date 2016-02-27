@@ -52,7 +52,7 @@ for k = 1:length(BWs)
     for j = 1:num_taps
         ps(:, j) = lsim((delay_cell*rc)^(j-1)*rc^2, pulse, t);
     end
-    c = brute_force_pmr_opt(ps, bits, 0.1);
+    c = brute_force_pmr_opt(ps, bits, 0.2);
 %     disp(c);
     amp(k) = max(ps*c);
     pmr(k) = pmr_best_offset(ps*c);
