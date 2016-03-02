@@ -9,13 +9,13 @@ if run_sweeps
     N = 20;
     amps = zeros(N, 5);
     pmrs = zeros(N, 5);
-    [amps(:, 2), pmrs(:, 2), ~, delays] = delay_sweep(p_norm.nel2, p_norm.t, 2, N);
-    [amps(:, 3), pmrs(:, 3), ~, delays] = delay_sweep(p_norm.nel2, p_norm.t, 3, N);
-    [amps(:, 4), pmrs(:, 4), ~, delays] = delay_sweep(p_norm.nel2, p_norm.t, 4, N);
-    [amps(:, 5), pmrs(:, 5), ~, delays] = delay_sweep(p_norm.nel2, p_norm.t, 5, N);
-    save('num_taps_sweep.mat');
+    [amps(:, 2), pmrs(:, 2), c2, delays] = delay_sweep(p_norm.nel2, p_norm.t, 2, N);
+    [amps(:, 3), pmrs(:, 3), c3, delays] = delay_sweep(p_norm.nel2, p_norm.t, 3, N);
+    [amps(:, 4), pmrs(:, 4), c4, delays] = delay_sweep(p_norm.nel2, p_norm.t, 4, N);
+    [amps(:, 5), pmrs(:, 5), c5, delays] = delay_sweep(p_norm.nel2, p_norm.t, 5, N);
+    save('delay_time_sweep_n_taps.mat');
 else
-    load('num_taps_sweep.mat');
+    load('delay_time_sweep_n_taps.mat');
 end
 
 figure;
@@ -43,15 +43,15 @@ function [amp, pmr, c, delays] = delay_sweep(pulse, t, num_taps, N)
 bits = 4;
 delays = logspace(0, 2, N)*1e-12;
 for k = 1:length(delays)
+    disp(k);
     delay = delays(k);
     delay_cell = pade_sys(1, delay);
     for j = 1:num_taps
         ps(:, j) = lsim((delay_cell)^(j-1), pulse, t);
     end
-    c = brute_force_pmr_opt(ps, bits, 0.2);
-    disp(c);
-    amp(k) = max(ps*c);
-    pmr(k) = pmr_best_offset(ps*c);
+    c(:, k) = brute_force_pmr_opt(ps, bits, 0.1);
+    amp(k) = max(ps*c(:, k));
+    pmr(k) = pmr_best_offset(ps*c(:, k));
 end
 
 end

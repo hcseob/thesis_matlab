@@ -9,10 +9,10 @@ if run_sweeps
     N = 5;
     amps = zeros(N, 5);
     pmrs = zeros(N, 5);
-    [amps(:, 2), pmrs(:, 2), ~, bitss] = delay_sweep(p_norm.nel2, p_norm.t, 2, N);
-    [amps(:, 3), pmrs(:, 3), ~, bitss] = delay_sweep(p_norm.nel2, p_norm.t, 3, N);
-    [amps(:, 4), pmrs(:, 4), ~, bitss] = delay_sweep(p_norm.nel2, p_norm.t, 4, N);
-    [amps(:, 5), pmrs(:, 5), ~, bitss] = delay_sweep(p_norm.nel2, p_norm.t, 5, N);
+    [amps(:, 2), pmrs(:, 2), c2, bitss] = delay_sweep(p_norm.nel2, p_norm.t, 2, N);
+    [amps(:, 3), pmrs(:, 3), c3, bitss] = delay_sweep(p_norm.nel2, p_norm.t, 3, N);
+    [amps(:, 4), pmrs(:, 4), c4, bitss] = delay_sweep(p_norm.nel2, p_norm.t, 4, N);
+    [amps(:, 5), pmrs(:, 5), c5, bitss] = delay_sweep(p_norm.nel2, p_norm.t, 5, N);
     save('bit_res_sweep.mat');
 else
     load('bit_res_sweep.mat');
@@ -50,10 +50,10 @@ for k = 1:length(bitss)
     for j = 1:num_taps
         ps(:, j) = lsim((delay_cell)^(j-1), pulse, t);
     end
-    c = brute_force_pmr_opt(ps, bits, 0.2);
+    c(:, k) = brute_force_pmr_opt(ps, bits, 0.2);
 %     disp(c);
-    amp(k) = max(ps*c);
-    pmr(k) = pmr_best_offset(ps*c);
+    amp(k) = max(ps*c(:, k));
+    pmr(k) = pmr_best_offset(ps*c(:, k));
 end
 
 end

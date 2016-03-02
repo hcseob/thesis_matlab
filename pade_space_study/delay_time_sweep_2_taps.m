@@ -16,6 +16,7 @@ pmr_nel2_bl = pmr_best_offset(p_norm.nel2);
 
 pmr_nel3_bl = pmr_best_offset(p_norm.nel3);
 [amp_nel3, pmr_nel3, c_nel3, delays] = delay_sweep(p_norm.nel3, p_norm.t);
+save('delay_time_sweep_2_taps.mat');
 
 figure;
 subplot(211);
@@ -53,9 +54,9 @@ for k = 1:length(delays)
     for j = 1:num_taps
         ps(:, j) = lsim((delay_cell)^(j-1), pulse, t);
     end
-    c = brute_force_pmr_opt(ps, bits, 0.2);
-    amp(k) = max(ps*c);
-    pmr(k) = pmr_best_offset(ps*c);
+    c(:, k) = brute_force_pmr_opt(ps, bits, 0.1);
+    amp(k) = max(ps*c(:, k));
+    pmr(k) = pmr_best_offset(ps*c(:, k));
 end
 
 end
