@@ -189,6 +189,4 @@ text(3e-3, 3, 'N=2', 'fontsize', 14);
 text(3e-3, 7, 'N=3', 'fontsize', 14);
 text(3e-3, 17, 'N=4', 'fontsize', 14);
 text(3e-3, 46, 'N=5', 'fontsize', 14);
-set(gca, 'fontsize', 14);
-xlabel('alpha', 'fontsize', 14);
-ylabel('sN', 'fontsize', 14);
+set(gca, 'fonc

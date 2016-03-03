@@ -1,4 +1,4 @@
-clear all; close all; run('~/thesis/matlab/thesis.m');
+clear all; close all; run('~/thesis/matlab/thesis.m'); addpath('./lib');
 
 tau = 25e-12;
 cen = round(log10(1/tau/2/pi));
