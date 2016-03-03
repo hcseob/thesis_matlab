@@ -1,4 +1,5 @@
-clear all; close all; run('~/thesis/matlab/thesis.m'); addpath('./lib');
+function spectral_norm_versus_alpha
+run('~/thesis/matlab/thesis.m'); addpath('./lib');
 alphas = logspace(-3, 1, 50);
 for j = 2:7
     order = j;
@@ -38,3 +39,4 @@ set(gca, 'fontsize', 14);
 xlabel('alpha', 'fontsize', 14);
 ylabel('sN', 'fontsize', 14);
 print('-depsc', './figures/spectral_norm_versus_alpha');
+end

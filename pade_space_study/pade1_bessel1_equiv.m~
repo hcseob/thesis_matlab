@@ -44,13 +44,23 @@ c_pade1a = brute_force_pmr_opt(ps_pade1a, bits, amp_lim);
 
 %%
 figure; hold all;
-plot(t, p_pade1, 'linewidth', 3);
-plot(t, p_bessel1_M, '--', 'linewidth', 2);
-plot(t, p_pade1a_M, '-x');
+plot(t/1e-12, pulse, '--k', 'linewidth', 1);
+plot(t(12:50:end)/1e-12, pulse(12:50:end), 'ok', 'linewidth', 1);
 
-plot(t, p_bessel1, '--', 'linewidth', 2);
-plot(t, p_pade1a, 'k-');
 
+plot(t/1e-12, p_pade1, '-k', 'linewidth', 2);
+plot(t(24:50:end)/1e-12, p_pade1(24:50:end), 'ok', 'linewidth', 2);
+% plot(t, p_bessel1_M, '--', 'linewidth', 2);
+% plot(t, p_pade1a_M, '-x');
+
+plot(t/1e-12, p_bessel1, '--', 'linewidth', 2, 'color', stanford_red);
+plot(t(18:50:end)/1e-12, p_bessel1(18:50:end), 'o', 'linewidth', 2, 'color', stanford_red);
+plot(t/1e-12, p_pade1a, '-.', 'linewidth', 2, 'color', new_blue);
+plot(t(18:50:end)/1e-12, p_pade1a(18:50:end), 'o', 'linewidth', 2, 'color', new_blue);
+xlim([0, 800]);
+xlabel('Time [ps]', 'fontsize', 14);
+ylabel('Amplitude', 'fontsize', 14);
+set(gca, 'fontsize', 14);
 %%
 disp([c_bessel1, c_bessel1_M]);
 
@@ -102,7 +112,7 @@ for j = 1:length(c_pade1a)
 end
 
 %%
-f = logspace(8, 12, 50);
+f = logspace(8, 12, 25);
 w = 2*pi*f;
 [g_pd, p_pd] = bode(pd_tf, w);
 [g_bs, p_bs] = bode(bs_tf, w);
@@ -113,41 +123,50 @@ w = 2*pi*f;
 
 figure;
 subplot(211);
-semilogx(f/1e9, db(squeeze(g_pd)), '-k', 'linewidth', 2); hold all;
-semilogx(f/1e9, db(squeeze(g_bs)), 'x', 'linewidth', 2, 'color', stanford_red, 'markersize', 8);
-semilogx(f/1e9, db(squeeze(g_pda)), 'o', 'linewidth', 2, 'color', new_blue, 'markersize', 5);
-xlabel('Frequency [GHz]')
-ylabel('Magnitude [dB]');
+semilogx(f/1e9, db(squeeze(g_bs)), 'x', 'linewidth', 2, 'color', stanford_red, 'markersize', 12); hold all;
+semilogx(f/1e9, db(squeeze(g_pda)), 'o', 'linewidth', 2, 'color', new_blue, 'markersize', 8);
+semilogx(f/1e9, db(squeeze(g_pd)), '-k', 'linewidth', 2); 
+ylim([-20, 10]);
+xlabel('Frequency [GHz]', 'fontsize', 14)
+ylabel('Magnitude [dB]', 'fontsize', 14);
+set(gca, 'fontsize', 14);
 
 subplot(212);
-semilogx(f/1e9, db(squeeze(p_pd)), '-k', 'linewidth', 2); hold all;
-semilogx(f/1e9, db(squeeze(p_bs)), 'x', 'linewidth', 2, 'color', stanford_red);
-semilogx(f/1e9, db(squeeze(p_pda)), 'o', 'linewidth', 2, 'color', new_blue);
-xlabel('Frequency [GHz]')
-ylabel('Phase [deg]');
+semilogx(f/1e9, db(squeeze(p_bs)), 'x', 'linewidth', 2, 'color', stanford_red, 'markersize', 12); hold all;
+semilogx(f/1e9, db(squeeze(p_pda)), 'o', 'linewidth', 2, 'color', new_blue, 'markersize', 8);
+semilogx(f/1e9, db(squeeze(p_pd)), '-k', 'linewidth', 2);
+ylim([0, 60]);
+xlabel('Frequency [GHz]', 'fontsize', 14)
+ylabel('Phase [deg]', 'fontsize', 14);
+set(gca, 'fontsize', 14);
 
 figure;
 subplot(211);
-semilogx(f/1e9, db(squeeze(g_pd)), '-k', 'linewidth', 2); hold all;
-semilogx(f/1e9, db(squeeze(g_bs_opt)), '-x', 'linewidth', 2, 'color', stanford_red, 'markersize', 8);
-semilogx(f/1e9, db(squeeze(g_pda_opt)), '-o', 'linewidth', 2, 'color', new_blue, 'markersize', 5);
-xlabel('Frequency [GHz]')
-ylabel('Magnitude [dB]');
+semilogx(f/1e9, db(squeeze(g_bs_opt)), '-x', 'linewidth', 2, 'color', stanford_red, 'markersize', 12); hold all;
+semilogx(f/1e9, db(squeeze(g_pda_opt)), '-o', 'linewidth', 2, 'color', new_blue, 'markersize', 8);
+semilogx(f/1e9, db(squeeze(g_pd)), '-k', 'linewidth', 2);
+ylim([-20, 10]);
+xlabel('Frequency [GHz]', 'fontsize', 14)
+ylabel('Magnitude [dB]', 'fontsize', 14);
+set(gca, 'fontsize', 14);
 
 subplot(212);
-semilogx(f/1e9, db(squeeze(p_pd)), '-k', 'linewidth', 2); hold all;
-semilogx(f/1e9, db(squeeze(p_bs_opt)), '-x', 'linewidth', 2, 'color', stanford_red);
-semilogx(f/1e9, db(squeeze(p_pda_opt)), '-o', 'linewidth', 2, 'color', new_blue);
-xlabel('Frequency [GHz]')
-ylabel('Phase [deg]');
+semilogx(f/1e9, db(squeeze(p_bs_opt)), '-x', 'linewidth', 2, 'color', stanford_red, 'markersize', 12); hold all;
+semilogx(f/1e9, db(squeeze(p_pda_opt)), '-o', 'linewidth', 2, 'color', new_blue, 'markersize', 8);
+semilogx(f/1e9, db(squeeze(p_pd)), '-k', 'linewidth', 2);
+ylim([0, 60]);
+xlabel('Frequency [GHz]', 'fontsize', 14)
+ylabel('Phase [deg]', 'fontsize', 14);
+set(gca, 'fontsize', 14);
+print('-depsc', './figures/pade1_bessel1_equiv_gain'
 
 
 %% coeff spread (limit coeffs to +/- 1)
-atten_bs = 1/max(abs(c_bessel1_M));
-atten_pda = 1/max(abs(c_pade1a_M));
-
-figure; hold all;
-plot(t, p_pade1);
-plot(t, p_pade1a_M*atten_pda);
-plot(t, p_bessel1_M*atten_bs);
+% atten_bs = 1/max(abs(c_bessel1_M));
+% atten_pda = 1/max(abs(c_pade1a_M));
+% 
+% figure; hold all;
+% plot(t, p_pade1);
+% plot(t, p_pade1a_M*atten_pda);
+% plot(t, p_bessel1_M*atten_bs);
 

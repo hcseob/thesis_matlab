@@ -35,7 +35,7 @@ semilogx(delays/1e-12, amp_ibm, '-k', 'linewidth', 2); hold all;
 % semilogx(delays/1e-12, amp_nel0); hold all;
 % semilogx(delays/1e-12, amp_nel1); hold all;
 semilogx(delays/1e-12, amp_nel2, '--', 'color', stanford_red, 'linewidth', 2); hold all;
-semilogx(delays/1e-12, amp_nel3, 'o-', 'color', new_blue, 'linewidth', 2); hold all;
+semilogx(delays/1e-12, amp_nel3, '-.', 'color', new_blue, 'linewidth', 2); hold all;
 xlabel('x2', 'fontsize', 14); 
 ylabel('y2', 'fontsize', 14); 
 set(gca, 'fontsize', 14);

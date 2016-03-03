@@ -1,4 +1,5 @@
-clear all; close all; run('~/thesis/matlab/thesis.m'); addpath('./lib');
+function gain_phase_group_delay
+run('~/thesis/matlab/thesis.m'); addpath('./lib');
 
 tau = 25e-12;
 cen = round(log10(1/tau/2/pi));
@@ -173,4 +174,4 @@ xlabel('Frequency [GHz]', 'fontsize', 14);
 ylabel('Phase [deg]', 'fontsize', 14)
 print('-depsc', './figures/gain_phase_lc');
 
-
+end

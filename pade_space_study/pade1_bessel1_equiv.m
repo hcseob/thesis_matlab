@@ -1,9 +1,8 @@
 clear all; close all;
-run('~/thesis/matlab/thesis.m');
-addpath('./lib');
+run('~/thesis/matlab/thesis.m'); addpath('./lib');
+load('../../data/channels/channels.mat');
 
 %%
-load('../../data/channels/channels.mat');
 pulse = p_norm.nel2;
 t = p_norm.t;
 
@@ -44,12 +43,24 @@ c_pade1a = brute_force_pmr_opt(ps_pade1a, bits, amp_lim);
 
 %%
 figure; hold all;
-plot(t, p_pade1, 'linewidth', 3);
-plot(t, p_bessel1_M, '--', 'linewidth', 2);
-plot(t, p_pade1a_M, '-x');
+plot(t/1e-12, pulse, '--k', 'linewidth', 1);
+plot(t(12:50:end)/1e-12, pulse(12:50:end), 'ok', 'linewidth', 1);
 
-plot(t, p_bessel1, '--', 'linewidth', 2);
-plot(t, p_pade1a, 'k-');
+
+plot(t/1e-12, p_pade1, '-k', 'linewidth', 2);
+plot(t(24:50:end)/1e-12, p_pade1(24:50:end), 'ok', 'linewidth', 2);
+% plot(t, p_bessel1_M, '--', 'linewidth', 2);
+% plot(t, p_pade1a_M, '-x');
+
+plot(t/1e-12, p_bessel1, '--', 'linewidth', 2, 'color', stanford_red);
+plot(t(18:50:end)/1e-12, p_bessel1(18:50:end), 'o', 'linewidth', 2, 'color', stanford_red);
+plot(t/1e-12, p_pade1a, '-.', 'linewidth', 2, 'color', new_blue);
+plot(t(18:50:end)/1e-12, p_pade1a(18:50:end), 'o', 'linewidth', 2, 'color', new_blue);
+xlim([0, 800]);
+xlabel('Time [ps]', 'fontsize', 14);
+ylabel('Amplitude', 'fontsize', 14);
+set(gca, 'fontsize', 14);
+print('-depsc', './figures/pade1_bessel1_equiv_pulse');
 
 %%
 disp([c_bessel1, c_bessel1_M]);
@@ -102,7 +113,7 @@ for j = 1:length(c_pade1a)
 end
 
 %%
-f = logspace(8, 12, 50);
+f = logspace(8, 12, 25);
 w = 2*pi*f;
 [g_pd, p_pd] = bode(pd_tf, w);
 [g_bs, p_bs] = bode(bs_tf, w);
@@ -113,82 +124,51 @@ w = 2*pi*f;
 
 figure;
 subplot(211);
-semilogx(f/1e9, db(squeeze(g_pd)), '-k', 'linewidth', 2); hold all;
-semilogx(f/1e9, db(squeeze(g_bs)), 'x', 'linewidth', 2, 'color', stanford_red, 'markersize', 8);
-semilogx(f/1e9, db(squeeze(g_pda)), 'o', 'linewidth', 2, 'color', new_blue, 'markersize', 5);
-xlabel('Frequency [GHz]')
-ylabel('Magnitude [dB]');
+semilogx(f/1e9, db(squeeze(g_bs)), 'x', 'linewidth', 2, 'color', stanford_red, 'markersize', 12); hold all;
+semilogx(f/1e9, db(squeeze(g_pda)), 'o', 'linewidth', 2, 'color', new_blue, 'markersize', 8);
+semilogx(f/1e9, db(squeeze(g_pd)), '-k', 'linewidth', 2); 
+ylim([-20, 10]);
+xlabel('Frequency [GHz]', 'fontsize', 14)
+ylabel('Magnitude [dB]', 'fontsize', 14);
+set(gca, 'fontsize', 14);
 
 subplot(212);
-semilogx(f/1e9, db(squeeze(p_pd)), '-k', 'linewidth', 2); hold all;
-semilogx(f/1e9, db(squeeze(p_bs)), 'x', 'linewidth', 2, 'color', stanford_red);
-semilogx(f/1e9, db(squeeze(p_pda)), 'o', 'linewidth', 2, 'color', new_blue);
-xlabel('Frequency [GHz]')
-ylabel('Phase [deg]');
+semilogx(f/1e9, squeeze(p_bs)-360, 'x', 'linewidth', 2, 'color', stanford_red, 'markersize', 12); hold all;
+semilogx(f/1e9, squeeze(p_pda)-360, 'o', 'linewidth', 2, 'color', new_blue, 'markersize', 8);
+semilogx(f/1e9, squeeze(p_pd)-360, '-k', 'linewidth', 2);
+ylim([-300, 100]);
+xlabel('Frequency [GHz]', 'fontsize', 14)
+ylabel('Phase [deg]', 'fontsize', 14);
+set(gca, 'fontsize', 14);
+print('-depsc', './figures/pade1_bessel1_equiv_equal');
 
 figure;
 subplot(211);
-semilogx(f/1e9, db(squeeze(g_pd)), '-k', 'linewidth', 2); hold all;
-semilogx(f/1e9, db(squeeze(g_bs_opt)), '-x', 'linewidth', 2, 'color', stanford_red, 'markersize', 8);
-semilogx(f/1e9, db(squeeze(g_pda_opt)), '-o', 'linewidth', 2, 'color', new_blue, 'markersize', 5);
-xlabel('Frequency [GHz]')
-ylabel('Magnitude [dB]');
+semilogx(f/1e9, db(squeeze(g_bs_opt)), '-x', 'linewidth', 2, 'color', stanford_red, 'markersize', 12); hold all;
+semilogx(f/1e9, db(squeeze(g_pda_opt)), '-o', 'linewidth', 2, 'color', new_blue, 'markersize', 8);
+semilogx(f/1e9, db(squeeze(g_pd)), '-k', 'linewidth', 2);
+ylim([-20, 10]);
+xlabel('Frequency [GHz]', 'fontsize', 14)
+ylabel('Magnitude [dB]', 'fontsize', 14);
+set(gca, 'fontsize', 14);
 
 subplot(212);
-semilogx(f/1e9, db(squeeze(p_pd)), '-k', 'linewidth', 2); hold all;
-semilogx(f/1e9, db(squeeze(p_bs_opt)), '-x', 'linewidth', 2, 'color', stanford_red);
-semilogx(f/1e9, db(squeeze(p_pda_opt)), '-o', 'linewidth', 2, 'color', new_blue);
-xlabel('Frequency [GHz]')
-ylabel('Phase [deg]');
+semilogx(f/1e9, squeeze(p_bs_opt), '-x', 'linewidth', 2, 'color', stanford_red, 'markersize', 12); hold all;
+semilogx(f/1e9, squeeze(p_pda_opt), '-o', 'linewidth', 2, 'color', new_blue, 'markersize', 8);
+semilogx(f/1e9, squeeze(p_pd)-360, '-k', 'linewidth', 2);
+ylim([-300, 100]);
+xlabel('Frequency [GHz]', 'fontsize', 14)
+ylabel('Phase [deg]', 'fontsize', 14);
+set(gca, 'fontsize', 14);
+print('-depsc', './figures/pade1_bessel1_equiv_opt');
 
 
 %% coeff spread (limit coeffs to +/- 1)
-atten_bs = 1/max(abs(c_bessel1_M));
-atten_pda = 1/max(abs(c_pade1a_M));
+% atten_bs = 1/max(abs(c_bessel1_M));
+% atten_pda = 1/max(abs(c_pade1a_M));
+% 
+% figure; hold all;
+% plot(t, p_pade1);
+% plot(t, p_pade1a_M*atten_pda);
+% plot(t, p_bessel1_M*atten_bs);
 
-figure; hold all;
-plot(t, p_pade1);
-plot(t, p_pade1a_M*atten_pda);
-plot(t, p_bessel1_M*atten_bs);
-
-%%
-
-alphas = logspace(-3, 1, 50);
-for j = 2:7
-    order = j;
-    Aeq1 = create_A(order, 1);
-    for k = 1:length(alphas)
-        alpha = alphas(k);
-        Aeqa = create_A(order, alpha);
-        Ma = Aeqa^-1*Aeq1;
-        S = transpose(Ma)*Ma;
-        [V, D]= eig(S);
-        sN(k, j) = sqrt(max(real(diag(D))));
-    end
-end
-
-Aeq1 = create_A(5, 1);
-M = create_A(5, 1/3)^-1*Aeq1;
-S = transpose(M)*M;
-[V, D]= eig(S);
-sN1by3 = sqrt(max(real(diag(D))));
-
-M = create_A(5, 0)^-1*Aeq1;
-S = transpose(M)*M;
-[V, D]= eig(S);
-sN0 = sqrt(max(real(diag(D))));
-
-
-%%
-figure;
-semilogx(alphas, sN(:, 2), '-k', 'linewidth', 2); hold all;
-semilogx(alphas, sN(:, 3), '-k', 'linewidth', 2); hold all;
-semilogx(alphas, sN(:, 4), '-k', 'linewidth', 2); hold all;
-semilogx(alphas, sN(:, 5), '-k', 'linewidth', 2); hold all;
-text(3e-3, 3, 'N=2', 'fontsize', 14);
-text(3e-3, 7, 'N=3', 'fontsize', 14);
-text(3e-3, 17, 'N=4', 'fontsize', 14);
-text(3e-3, 46, 'N=5', 'fontsize', 14);
-set(gca, 'fontsize', 14);
-xlabel('alpha', 'fontsize', 14);
-ylabel('sN', 'fontsize', 14);
