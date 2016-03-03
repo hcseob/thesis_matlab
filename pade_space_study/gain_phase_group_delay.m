@@ -59,7 +59,7 @@ ylim([-360, 100]);
 set(gca, 'fontsize', 14);
 xlabel('Frequency [GHz]', 'fontsize', 14);
 ylabel('Phase [deg]', 'fontsize', 14)
-print('-depsc', './figures/mag_phase_bessel');
+print('-depsc', './figures/gain_phase_bessel');
 
 
 %% pade delays
