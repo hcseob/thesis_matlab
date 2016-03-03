@@ -5,4 +5,5 @@ amplitude_sweep;
 bit_res_sweep;
 spectral_norm_versus_alpha;
 gain_phase_group_delay;
+gain_phase_group_delay_pade_alpha;
 pade1_bessel1_equiv;

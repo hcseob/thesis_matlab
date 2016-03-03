@@ -63,7 +63,7 @@ ylim([-200, 50]);
 set(gca, 'fontsize', 14);
 xlabel('Frequency [GHz]', 'fontsize', 14);
 ylabel('Phase [deg]', 'fontsize', 14)
-print('-depsc', './figures/group_delay_pade_alpha');
+print('-depsc', './figures/gain_phase_pade_alpha');
 
 
 end
