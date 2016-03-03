@@ -115,7 +115,7 @@ ylabel('Phase [deg]', 'fontsize', 14)
 print('-depsc', './figures/gain_phase_pade');
 
 %% LC approximation
-load_from_cadence = true;
+load_from_cadence = false;
 if load_from_cadence
     addpath('/cad/cadence/MMSIM10.11.128.lnx86/tools.lnx86/spectre/matlab/64bit');
     data = cds_srr('/home/rboesch/simulation/delay_LCLC/spectre/schematic/psf', 'ac-ac', 'VOLC1');

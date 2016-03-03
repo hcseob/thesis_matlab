@@ -1,4 +1,4 @@
-clear all; close all;
+function pade1_bessel1_equiv
 run('~/thesis/matlab/thesis.m'); addpath('./lib');
 load('../../data/channels/channels.mat');
 
@@ -162,13 +162,4 @@ ylabel('Phase [deg]', 'fontsize', 14);
 set(gca, 'fontsize', 14);
 print('-depsc', './figures/pade1_bessel1_equiv_opt');
 
-
-%% coeff spread (limit coeffs to +/- 1)
-% atten_bs = 1/max(abs(c_bessel1_M));
-% atten_pda = 1/max(abs(c_pade1a_M));
-% 
-% figure; hold all;
-% plot(t, p_pade1);
-% plot(t, p_pade1a_M*atten_pda);
-% plot(t, p_bessel1_M*atten_bs);
-
+end
