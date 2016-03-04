@@ -25,7 +25,7 @@ semilogx(alphas, pmrs(:, 5)/pmr_bl, '-k', 'linewidth', 2); hold all;
 % semilogx(alphas, pmrs(:, 4)/pmr_bl, '--', 'color', stanford_red, 'linewidth', 2); hold all;
 % semilogx(alphas, pmrs(:, 3)/pmr_bl, '-.', 'color', new_blue, 'linewidth', 2); hold all;
 xlabel('Pole/Zero Ratio', 'fontsize', 14); 
-ylabel('PMR', 'fontsize', 14); 
+ylabel('DR Improvement', 'fontsize', 14); 
 ylim([1, 5]);
 % legend('bits=3', 'bits=4', 'bits=5');
 set(gca, 'fontsize', 14);
