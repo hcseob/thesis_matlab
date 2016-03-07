@@ -38,9 +38,10 @@ ylim([0, 60]);
 set(gca, 'fontsize', 14);
 legend('alpha=1/3', 'alpha=1', 'alpha=3', 'location', 'northeast');
 xlabel('Frequency [GHz]', 'fontsize', 14);
-ylabel('Group Delay [ps]', 'fontsize', 14)
-print('-depsc', './figures/group_delay_pade_alpha');
-export_fig './figures/group_delay_pade_alpha.eps';
+ylabel('Group Delay [ps]', 'fontsize', 14);
+fname = './figures/group_delay_pade_alpha.eps';
+print('-depsc', fname);
+fix_dottedline(fname);
 
 figure; 
 subplot(211);
