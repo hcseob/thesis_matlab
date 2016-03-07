@@ -32,7 +32,7 @@ gd3 = -diff(p3)./diff(w');
 figure; 
 semilogx(w_gd/2/pi/1e9, gd2/1e-12, '--', 'linewidth', 2, 'color', stanford_red); hold all;
 semilogx(w_gd/2/pi/1e9, gd1/1e-12, '-k', 'linewidth', 2); 
-semilogx(w_gd/2/pi/1e9, gd3/1e-12, '-.', 'linewidth', 2, 'color', new_blue);
+semilogx(w_gd/2/pi/1e9, gd3/1e-12, ':', 'linewidth', 2, 'color', new_blue);
 % semilogx(w_gd/2/pi/1e9, gdid/1e-12, '--k'); hold all;
 ylim([0, 60]);
 set(gca, 'fontsize', 14);
