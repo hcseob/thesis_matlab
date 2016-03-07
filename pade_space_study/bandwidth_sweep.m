@@ -22,7 +22,7 @@ figure;
 subplot(211);
 semilogx(BWs/1e9, pmrs(:, 3)/pmr_bl, '-k', 'linewidth', 2); hold all;
 semilogx(BWs/1e9, pmrs(:, 4)/pmr_bl, '--', 'color', stanford_red, 'linewidth', 2); hold all;
-semilogx(BWs/1e9, pmrs(:, 5)/pmr_bl, '-.', 'color', new_blue, 'linewidth', 2); hold all;
+semilogx(BWs/1e9, pmrs(:, 5)/pmr_bl, ':', 'color', new_blue, 'linewidth', 2); hold all;
 xlabel('Bandwidth [GHz]', 'fontsize', 14); 
 ylabel('DR Improvement', 'fontsize', 14); 
 ylim([1, 4])
@@ -31,13 +31,13 @@ set(gca, 'fontsize', 14);
 subplot(212);
 semilogx(BWs/1e9, amps(:, 3), '-k', 'linewidth', 2); hold all;
 semilogx(BWs/1e9, amps(:, 4), '--', 'color', stanford_red, 'linewidth', 2); hold all;
-semilogx(BWs/1e9, amps(:, 5), '-.', 'color', new_blue, 'linewidth', 2); hold all;
+semilogx(BWs/1e9, amps(:, 5), ':', 'color', new_blue, 'linewidth', 2); hold all;
 xlabel('Bandwidth [GHz]', 'fontsize', 14); 
 ylabel('Attenuation', 'fontsize', 14); 
 ylim([0, 1])
 set(gca, 'fontsize', 14);
 
-print('-depsc', './figures/bandwidth_sweep');
+save_fig('./figures/bandwidth_sweep.eps');
 
 end
 

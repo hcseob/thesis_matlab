@@ -24,7 +24,7 @@ semilogx(delays/1e-12, pmr_ibm/pmr_ibm_bl, '-k', 'linewidth', 2); hold all;
 % semilogx(delays/1e-12, pmr_nel0/pmr_nel0_bl); hold all;
 % semilogx(delays/1e-12, pmr_nel1/pmr_nel1_bl); hold all;
 semilogx(delays/1e-12, pmr_nel2/pmr_nel2_bl, '--', 'color', stanford_red, 'linewidth', 2); hold all;
-semilogx(delays/1e-12, pmr_nel3/pmr_nel3_bl, 'o-', 'color', new_blue, 'linewidth', 2); hold all;
+semilogx(delays/1e-12, pmr_nel3/pmr_nel3_bl, ':', 'color', new_blue, 'linewidth', 2); hold all;
 xlabel('Delay Time [ps]', 'fontsize', 14); 
 ylabel('DR Improvement', 'fontsize', 14); 
 ylim([1, 4]);
@@ -35,12 +35,12 @@ semilogx(delays/1e-12, amp_ibm, '-k', 'linewidth', 2); hold all;
 % semilogx(delays/1e-12, amp_nel0); hold all;
 % semilogx(delays/1e-12, amp_nel1); hold all;
 semilogx(delays/1e-12, amp_nel2, '--', 'color', stanford_red, 'linewidth', 2); hold all;
-semilogx(delays/1e-12, amp_nel3, '-.', 'color', new_blue, 'linewidth', 2); hold all;
+semilogx(delays/1e-12, amp_nel3, ':', 'color', new_blue, 'linewidth', 2); hold all;
 xlabel('Delay Time [ps]', 'fontsize', 14); 
 ylabel('Attenuation', 'fontsize', 14); 
 set(gca, 'fontsize', 14);
 ylim([0, 1]);
-print('-depsc', './figures/delay_time_sweep_2_taps');
+save_fig('./figures/delay_time_sweep_2_taps.eps');
 
 end
 

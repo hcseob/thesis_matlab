@@ -38,5 +38,5 @@ text(3e-3, 46.5, 'N=5', 'fontsize', 14);
 set(gca, 'fontsize', 14);
 xlabel('alpha', 'fontsize', 14);
 ylabel('sN', 'fontsize', 14);
-print('-depsc', './figures/spectral_norm_versus_alpha');
+save_fig('./figures/spectral_norm_versus_alpha.eps');
 end

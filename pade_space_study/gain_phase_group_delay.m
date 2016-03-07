@@ -31,20 +31,20 @@ gd3 = -diff(p3)./diff(w');
 figure; 
 semilogx(w_gd/2/pi/1e9, gd1/1e-12, '-k', 'linewidth', 2); hold all;
 semilogx(w_gd/2/pi/1e9, gd2/1e-12, '--', 'linewidth', 2, 'color', stanford_red);
-semilogx(w_gd/2/pi/1e9, gd3/1e-12, '-.', 'linewidth', 2, 'color', new_blue);
+semilogx(w_gd/2/pi/1e9, gd3/1e-12, ':', 'linewidth', 2, 'color', new_blue);
 semilogx(w_gd/2/pi/1e9, gdid/1e-12, '--k'); hold all;
 ylim([0, 30])
 set(gca, 'fontsize', 14);
 legend('First Order Bessel', 'Second Order Bessel', 'Third Order Bessel', 'location', 'southwest');
 xlabel('Frequency [GHz]', 'fontsize', 14);
 ylabel('Group Delay [ps]', 'fontsize', 14)
-print('-depsc', './figures/group_delay_bessel');
+save_fig('./figures/group_delay_bessel.eps');
 
 figure; 
 subplot(211);
 semilogx(f/1e9, db(squeeze(g1)), '-k', 'linewidth', 2); hold all;
 semilogx(f/1e9, db(squeeze(g2)), '--', 'linewidth', 2, 'color', stanford_red); hold all;
-semilogx(f/1e9, db(squeeze(g3)), '-.', 'linewidth', 2, 'color', new_blue); hold all;
+semilogx(f/1e9, db(squeeze(g3)), ':', 'linewidth', 2, 'color', new_blue); hold all;
 semilogx(f/1e9, db(squeeze(gid)), '--k'); hold all;
 ylim([-20, 10]);
 set(gca, 'fontsize', 14);
@@ -54,13 +54,13 @@ ylabel('Magnitude [dB]', 'fontsize', 14)
 subplot(212);
 semilogx(f/1e9, p1*180/pi, '-k', 'linewidth', 2); hold all;
 semilogx(f/1e9, p2*180/pi, '--', 'linewidth', 2, 'color', stanford_red); hold all;
-semilogx(f/1e9, p3*180/pi, '-.', 'linewidth', 2, 'color', new_blue); hold all;
+semilogx(f/1e9, p3*180/pi, ':', 'linewidth', 2, 'color', new_blue); hold all;
 semilogx(f/1e9, pid*180/pi, '--k'); hold all;
 ylim([-360, 100]);
 set(gca, 'fontsize', 14);
 xlabel('Frequency [GHz]', 'fontsize', 14);
 ylabel('Phase [deg]', 'fontsize', 14)
-print('-depsc', './figures/gain_phase_bessel');
+save_fig('./figures/gain_phase_bessel.eps');
 
 
 %% pade delays
@@ -83,20 +83,20 @@ gd3 = -diff(p3)./diff(w');
 figure; 
 semilogx(w_gd/2/pi/1e9, gd1/1e-12, '-k', 'linewidth', 2); hold all;
 semilogx(w_gd/2/pi/1e9, gd2/1e-12, '--', 'linewidth', 2, 'color', stanford_red);
-semilogx(w_gd/2/pi/1e9, gd3/1e-12, '-.', 'linewidth', 2, 'color', new_blue);
+semilogx(w_gd/2/pi/1e9, gd3/1e-12, ':', 'linewidth', 2, 'color', new_blue);
 semilogx(w_gd/2/pi/1e9, gdid/1e-12, '--k'); hold all;
 ylim([0, 30]);
 set(gca, 'fontsize', 14);
 legend('First Order Pade', 'Second Order Pade', 'Third Order Pade', 'location', 'southwest');
 xlabel('Frequency [GHz]', 'fontsize', 14);
 ylabel('Group Delay [ps]', 'fontsize', 14)
-print('-depsc', './figures/group_delay_pade');
+save_fig('./figures/group_delay_pade.eps');
 
 figure; 
 subplot(211);
 semilogx(f/1e9, db(squeeze(g1)), '-k', 'linewidth', 2); hold all;
 semilogx(f/1e9, db(squeeze(g2)), '--', 'linewidth', 2, 'color', stanford_red); hold all;
-semilogx(f/1e9, db(squeeze(g3)), '-.', 'linewidth', 2, 'color', new_blue); hold all;
+semilogx(f/1e9, db(squeeze(g3)), ':', 'linewidth', 2, 'color', new_blue); hold all;
 semilogx(f/1e9, db(squeeze(gid)), '--k'); hold all;
 ylim([-20, 10]);
 set(gca, 'fontsize', 14);
@@ -106,13 +106,13 @@ ylabel('Magnitude [dB]', 'fontsize', 14)
 subplot(212);
 semilogx(f/1e9, p1*180/pi-360, '-k', 'linewidth', 2); hold all;
 semilogx(f/1e9, p2*180/pi-360, '--', 'linewidth', 2, 'color', stanford_red); hold all;
-semilogx(f/1e9, p3*180/pi-720, '-.', 'linewidth', 2, 'color', new_blue); hold all;
+semilogx(f/1e9, p3*180/pi-720, ':', 'linewidth', 2, 'color', new_blue); hold all;
 semilogx(f/1e9, pid*180/pi, '--k'); hold all;
 ylim([-360, 100]);
 set(gca, 'fontsize', 14);
 xlabel('Frequency [GHz]', 'fontsize', 14);
 ylabel('Phase [deg]', 'fontsize', 14)
-print('-depsc', './figures/gain_phase_pade');
+save_fig('./figures/gain_phase_pade.eps');
 
 %% LC approximation
 load_from_cadence = false;
@@ -143,20 +143,20 @@ end
 figure; 
 semilogx(wlc_gd/2/pi/1e9, gd1/1e-12, '-k', 'linewidth', 2); hold all;
 semilogx(wlc_gd/2/pi/1e9, gd2/1e-12, '--', 'linewidth', 2, 'color', stanford_red);
-semilogx(wlc_gd/2/pi/1e9, gd3/1e-12, '-.', 'linewidth', 2, 'color', new_blue);
+semilogx(wlc_gd/2/pi/1e9, gd3/1e-12, ':', 'linewidth', 2, 'color', new_blue);
 semilogx(w_gd/2/pi/1e9, gdid/1e-12, '--k'); hold all;
 ylim([0, 50]);
 set(gca, 'fontsize', 14);
 legend('First Order LC', 'Second Order LC', 'Third Order LC', 'location', 'southwest');
 xlabel('Frequency [GHz]', 'fontsize', 14);
 ylabel('Group Delay [ps]', 'fontsize', 14)
-print('-depsc', './figures/group_delay_lc');
+save_fig('./figures/group_delay_lc.eps');
 
 figure; 
 subplot(211);
 semilogx(flc/1e9, db(squeeze(2*g1)), '-k', 'linewidth', 2); hold all;
 semilogx(flc/1e9, db(squeeze(2*g2)), '--', 'linewidth', 2, 'color', stanford_red); hold all;
-semilogx(flc/1e9, db(squeeze(2*g3)), '-.', 'linewidth', 2, 'color', new_blue); hold all;
+semilogx(flc/1e9, db(squeeze(2*g3)), ':', 'linewidth', 2, 'color', new_blue); hold all;
 semilogx(f/1e9, db(squeeze(gid)), '--k'); hold all;
 ylim([-20, 10]);
 set(gca, 'fontsize', 14);
@@ -166,12 +166,12 @@ ylabel('Magnitude [dB]', 'fontsize', 14)
 subplot(212);
 semilogx(flc/1e9, p1*180/pi, '-k', 'linewidth', 2); hold all;
 semilogx(flc/1e9, p2*180/pi, '--', 'linewidth', 2, 'color', stanford_red); hold all;
-semilogx(flc/1e9, p3*180/pi, '-.', 'linewidth', 2, 'color', new_blue); hold all;
+semilogx(flc/1e9, p3*180/pi, ':', 'linewidth', 2, 'color', new_blue); hold all;
 semilogx(f/1e9, pid*180/pi, '--k'); hold all;
 ylim([-360, 100]);
 set(gca, 'fontsize', 14);
 xlabel('Frequency [GHz]', 'fontsize', 14);
 ylabel('Phase [deg]', 'fontsize', 14)
-print('-depsc', './figures/gain_phase_lc');
+save_fig('./figures/gain_phase_lc.eps');
 
 end

@@ -22,7 +22,7 @@ figure;
 subplot(211);
 plot(bitss, pmrs(:, 3)/pmr_bl, '-k', 'linewidth', 2); hold all;
 plot(bitss, pmrs(:, 4)/pmr_bl, '--', 'color', stanford_red, 'linewidth', 2); hold all;
-plot(bitss, pmrs(:, 5)/pmr_bl, '-.', 'color', new_blue, 'linewidth', 2); hold all;
+plot(bitss, pmrs(:, 5)/pmr_bl, ':', 'color', new_blue, 'linewidth', 2); hold all;
 xlabel('Coefficient Bit Resolution', 'fontsize', 14); 
 ylabel('DR Improvement', 'fontsize', 14); 
 ylim([1, 4])
@@ -31,13 +31,13 @@ set(gca, 'fontsize', 14);
 subplot(212);
 plot(bitss, amps(:, 3), '-k', 'linewidth', 2); hold all;
 plot(bitss, amps(:, 4), '--', 'color', stanford_red, 'linewidth', 2); hold all;
-plot(bitss, amps(:, 5), '-.', 'color', new_blue, 'linewidth', 2); hold all;
+plot(bitss, amps(:, 5), ':', 'color', new_blue, 'linewidth', 2); hold all;
 xlabel('Coefficient Bit Resolution', 'fontsize', 14); 
 ylabel('Attenuation', 'fontsize', 14); 
-ylim([0, 1])
+ylim([0, 1]);
 set(gca, 'fontsize', 14);
 
-print('-depsc', './figures/bit_res_sweep');
+save_fig('./figures/bit_res_sweep.eps');
 
 end
 

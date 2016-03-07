@@ -43,7 +43,7 @@ c_pade1a = brute_force_pmr_opt(ps_pade1a, bits, amp_lim);
 
 %%
 figure; hold all;
-plot(t/1e-12, pulse, '--k', 'linewidth', 1);
+plot(t/1e-12, pulse, '-k', 'linewidth', 1);
 plot(t(12:50:end)/1e-12, pulse(12:50:end), 'ok', 'linewidth', 1);
 
 
@@ -54,13 +54,13 @@ plot(t(24:50:end)/1e-12, p_pade1(24:50:end), 'ok', 'linewidth', 2);
 
 plot(t/1e-12, p_bessel1, '--', 'linewidth', 2, 'color', stanford_red);
 plot(t(18:50:end)/1e-12, p_bessel1(18:50:end), 'o', 'linewidth', 2, 'color', stanford_red);
-plot(t/1e-12, p_pade1a, '-.', 'linewidth', 2, 'color', new_blue);
+plot(t/1e-12, p_pade1a, ':', 'linewidth', 2, 'color', new_blue);
 plot(t(18:50:end)/1e-12, p_pade1a(18:50:end), 'o', 'linewidth', 2, 'color', new_blue);
 xlim([0, 800]);
 xlabel('Time [ps]', 'fontsize', 14);
 ylabel('Amplitude', 'fontsize', 14);
 set(gca, 'fontsize', 14);
-print('-depsc', './figures/pade1_bessel1_equiv_pulse');
+save_fig('./figures/pade1_bessel1_equiv_pulse.eps');
 
 %%
 disp([c_bessel1, c_bessel1_M]);
@@ -140,7 +140,7 @@ ylim([-300, 100]);
 xlabel('Frequency [GHz]', 'fontsize', 14)
 ylabel('Phase [deg]', 'fontsize', 14);
 set(gca, 'fontsize', 14);
-print('-depsc', './figures/pade1_bessel1_equiv_equal');
+save_fig('./figures/pade1_bessel1_equiv_equal.eps');
 
 figure;
 subplot(211);
@@ -160,6 +160,6 @@ ylim([-300, 100]);
 xlabel('Frequency [GHz]', 'fontsize', 14)
 ylabel('Phase [deg]', 'fontsize', 14);
 set(gca, 'fontsize', 14);
-print('-depsc', './figures/pade1_bessel1_equiv_opt');
+save_fig('./figures/pade1_bessel1_equiv_opt.eps');
 
 end
