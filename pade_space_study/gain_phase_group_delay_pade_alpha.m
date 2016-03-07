@@ -39,15 +39,13 @@ set(gca, 'fontsize', 14);
 legend('alpha=1/3', 'alpha=1', 'alpha=3', 'location', 'northeast');
 xlabel('Frequency [GHz]', 'fontsize', 14);
 ylabel('Group Delay [ps]', 'fontsize', 14);
-fname = './figures/group_delay_pade_alpha.eps';
-print('-depsc', fname);
-fix_dottedline(fname);
+save_fig('./figures/group_delay_pade_alpha.eps');
 
 figure; 
 subplot(211);
 semilogx(f/1e9, db(squeeze(g1)), '-k', 'linewidth', 2); hold all;
 semilogx(f/1e9, db(squeeze(g2)), '--', 'linewidth', 2, 'color', stanford_red); hold all;
-semilogx(f/1e9, db(squeeze(g3)), '-.', 'linewidth', 2, 'color', new_blue); hold all;
+semilogx(f/1e9, db(squeeze(g3)), ':', 'linewidth', 2, 'color', new_blue); hold all;
 % semilogx(f/1e9, db(squeeze(gid)), '--k'); hold all;
 % xlim([1, 100]);
 ylim([-20, 20]);
@@ -58,14 +56,14 @@ ylabel('Magnitude [dB]', 'fontsize', 14)
 subplot(212);
 semilogx(f/1e9, p1*180/pi-360, '-k', 'linewidth', 2); hold all;
 semilogx(f/1e9, p2*180/pi-360, '--', 'linewidth', 2, 'color', stanford_red); hold all;
-semilogx(f/1e9, p3*180/pi-360, '-.', 'linewidth', 2, 'color', new_blue); hold all;
+semilogx(f/1e9, p3*180/pi-360, ':', 'linewidth', 2, 'color', new_blue); hold all;
 % semilogx(f/1e9, pid*180/pi, '--k'); hold all;
 % xlim([1, 100]);
 ylim([-200, 50]);
 set(gca, 'fontsize', 14);
 xlabel('Frequency [GHz]', 'fontsize', 14);
 ylabel('Phase [deg]', 'fontsize', 14)
-print('-depsc', './figures/gain_phase_pade_alpha');
+save_fig('./figures/gain_phase_pade_alpha.eps');
 
 
 end
