@@ -124,9 +124,9 @@ w = 2*pi*f;
 
 figure;
 subplot(211);
-semilogx(f/1e9, db(squeeze(g_pd)), '-k', 'linewidth', 2); hold all;
-semilogx(f/1e9, db(squeeze(g_bs)), '--', 'linewidth', 2, 'color', stanford_red);
+semilogx(f/1e9, db(squeeze(g_bs)), '--', 'linewidth', 2, 'color', stanford_red); hold all;
 semilogx(f/1e9, db(squeeze(g_pda)), ':', 'linewidth', 2, 'color', new_blue);
+semilogx(f/1e9, db(squeeze(g_pd)), '-k', 'linewidth', 2);
 xlim([0.1, 1000]);
 ylim([-20, 10]);
 xlabel('Frequency (GHz)', 'fontsize', font_size_label)
@@ -134,12 +134,12 @@ ylabel('Magnitude (dB)', 'fontsize', font_size_label);
 set(gca, 'fontsize', font_size);
 
 subplot(212);
-semilogx(f/1e9, squeeze(p_pd)-360, '-k', 'linewidth', 2); hold all;
-semilogx(f/1e9, squeeze(p_bs)-360, '--', 'linewidth', 2, 'color', stanford_red);
+semilogx(f/1e9, squeeze(p_bs)-360, '--', 'linewidth', 2, 'color', stanford_red); hold all;
 semilogx(f/1e9, squeeze(p_pda)-360, ':', 'linewidth', 2, 'color', new_blue);
+semilogx(f/1e9, squeeze(p_pd)-360, '-k', 'linewidth', 2);
 xlim([0.1, 1000]);
 ylim([-300, 100]);
-legend('a = 0', 'a = 1/3', 'a = 1', 'location', 'southwest'); 
+legend('\alpha=0', '\alpha=1/3', '\alpha=1', 'location', 'southwest'); 
 xlabel('Frequency (GHz)', 'fontsize', font_size_label)
 ylabel('Phase (Degrees)', 'fontsize', font_size_label);
 set(gca, 'fontsize', font_size);
@@ -147,22 +147,21 @@ save_fig('./figures/pade1_bessel1_equiv_equal.eps');
 
 figure;
 subplot(211);
-semilogx(f/1e9, db(squeeze(g_pd)), '-k', 'linewidth', 2); hold all;
-semilogx(f/1e9, db(squeeze(g_bs_opt)), '--', 'linewidth', 2, 'color', stanford_red);
+semilogx(f/1e9, db(squeeze(g_bs_opt)), '--', 'linewidth', 2, 'color', stanford_red); hold all;
 semilogx(f/1e9, db(squeeze(g_pda_opt)), ':', 'linewidth', 2, 'color', new_blue);
-xlim([0.1, 1000]);
+semilogx(f/1e9, db(squeeze(g_pd)), '-k', 'linewidth', 2);
 ylim([-20, 10]);
 xlabel('Frequency (GHz)', 'fontsize', font_size_label)
 ylabel('Magnitude (dB)', 'fontsize', font_size_label);
 set(gca, 'fontsize', font_size);
 
 subplot(212);
-semilogx(f/1e9, squeeze(p_pd)-360, '-k', 'linewidth', 2); hold all;
-semilogx(f/1e9, squeeze(p_bs_opt), '--', 'linewidth', 2, 'color', stanford_red);
+semilogx(f/1e9, squeeze(p_bs_opt), '--', 'linewidth', 2, 'color', stanford_red); hold all;
 semilogx(f/1e9, squeeze(p_pda_opt), ':', 'linewidth', 2, 'color', new_blue);
+semilogx(f/1e9, squeeze(p_pd)-360, '-k', 'linewidth', 2);
 xlim([0.1, 1000]);
 ylim([-300, 100]);
-legend('a = 0', 'a = 1/3', 'a = 1', 'location', 'southwest'); 
+legend('\alpha=0', '\alpha=1/3', '\alpha=1', 'location', 'southwest'); 
 xlabel('Frequency (GHz)', 'fontsize', font_size_label)
 ylabel('Phase (Degrees)', 'fontsize', font_size_label);
 set(gca, 'fontsize', font_size);

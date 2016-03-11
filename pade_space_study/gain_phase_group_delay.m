@@ -1,7 +1,5 @@
 function gain_phase_group_delay
 run('~/thesis/matlab/thesis.m'); addpath('./lib');
-font_size = 18;
-font_size_label = 24;
 
 tau = 25e-12;
 cen = round(log10(1/tau/2/pi));
