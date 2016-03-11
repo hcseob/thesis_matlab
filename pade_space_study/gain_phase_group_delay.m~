@@ -103,7 +103,7 @@ semilogx(f/1e9, db(squeeze(g3)), ':', 'linewidth', 2, 'color', new_blue); hold a
 semilogx(f/1e9, db(squeeze(gid)), '--k'); hold all;
 ylim([-20, 10]);
 legend('Order = 1', 'Order = 2', 'Order = 3', 'location', 'southwest');
-set(gca, 'fontsize', font_size);
+set(gca, 'fontsize', 14);
 xlabel('Frequency (GHz)', 'fontsize', font_size_label);
 ylabel('Magnitude (dB)', 'fontsize', font_size_label);
 subplot(212);
@@ -165,8 +165,8 @@ semilogx(f/1e9, db(squeeze(gid)), '--k'); hold all;
 ylim([-20, 10]);
 legend('Order = 1', 'Order = 2', 'Order = 3', 'location', 'southwest');
 set(gca, 'fontsize', font_size);
-xlabel('Frequency (GHz)', 'fontsize', font_size_label);
-ylabel('Magnitude (dB)', 'fontsize', font_size_label);
+xlabel('Frequency [GHz]', 'fontsize', font_size_label);
+ylabel('Magnitude [dB]', 'fontsize', font_size_label);
 subplot(212);
 semilogx(flc/1e9, p1*180/pi, '-k', 'linewidth', 2); hold all;
 semilogx(flc/1e9, p2*180/pi, '--', 'linewidth', 2, 'color', stanford_red); hold all;
@@ -175,8 +175,8 @@ semilogx(f/1e9, pid*180/pi, '--k'); hold all;
 ylim([-360, 100]);
 legend('Order = 1', 'Order = 2', 'Order = 3', 'location', 'southwest');
 set(gca, 'fontsize', font_size);
-xlabel('Frequency (GHz)', 'fontsize', font_size_label);
-ylabel('Phase (Degrees)', 'fontsize', font_size_label)
+xlabel('Frequency [GHz]', 'fontsize', font_size_label);
+ylabel('Phase [deg]', 'fontsize', font_size_label)
 save_fig('./figures/gain_phase_lc.eps');
 
 end
