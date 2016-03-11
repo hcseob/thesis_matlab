@@ -1,5 +1,6 @@
 function gain_phase_group_delay
 run('~/thesis/matlab/thesis.m'); addpath('./lib');
+font_size = 18;
 
 tau = 25e-12;
 cen = round(log10(1/tau/2/pi));
@@ -33,11 +34,11 @@ semilogx(w_gd/2/pi/1e9, gd1/1e-12, '-k', 'linewidth', 2); hold all;
 semilogx(w_gd/2/pi/1e9, gd2/1e-12, '--', 'linewidth', 2, 'color', stanford_red);
 semilogx(w_gd/2/pi/1e9, gd3/1e-12, ':', 'linewidth', 2, 'color', new_blue);
 semilogx(w_gd/2/pi/1e9, gdid/1e-12, '--k'); hold all;
-ylim([0, 30])
-set(gca, 'fontsize', 14);
-legend('First Order Bessel', 'Second Order Bessel', 'Third Order Bessel', 'location', 'southwest');
-xlabel('Frequency [GHz]', 'fontsize', 14);
-ylabel('Group Delay [ps]', 'fontsize', 14)
+ylim([0, 30]);
+legend('Order = 1', 'Order = 2', 'Order = 3', 'location', 'southwest');
+set(gca, 'fontsize', font_size);
+xlabel('Frequency (GHz)', 'fontsize', font_size);
+ylabel('Group Delay (ps)', 'fontsize', font_size)
 save_fig('./figures/group_delay_bessel.eps');
 
 figure; 
@@ -47,19 +48,20 @@ semilogx(f/1e9, db(squeeze(g2)), '--', 'linewidth', 2, 'color', stanford_red); h
 semilogx(f/1e9, db(squeeze(g3)), ':', 'linewidth', 2, 'color', new_blue); hold all;
 semilogx(f/1e9, db(squeeze(gid)), '--k'); hold all;
 ylim([-20, 10]);
-set(gca, 'fontsize', 14);
-% legend('First Order Bessel', 'Second Order Bessel', 'Third Order Bessel', 'location', 'southwest');
-xlabel('Frequency [GHz]', 'fontsize', 14);
-ylabel('Magnitude [dB]', 'fontsize', 14)
+legend('Order = 1', 'Order = 2', 'Order = 3', 'location', 'southwest');
+set(gca, 'fontsize', font_size);
+xlabel('Frequency (GHz)', 'fontsize', font_size);
+ylabel('Magnitude (dB)', 'fontsize', font_size);
 subplot(212);
 semilogx(f/1e9, p1*180/pi, '-k', 'linewidth', 2); hold all;
 semilogx(f/1e9, p2*180/pi, '--', 'linewidth', 2, 'color', stanford_red); hold all;
 semilogx(f/1e9, p3*180/pi, ':', 'linewidth', 2, 'color', new_blue); hold all;
 semilogx(f/1e9, pid*180/pi, '--k'); hold all;
 ylim([-360, 100]);
-set(gca, 'fontsize', 14);
-xlabel('Frequency [GHz]', 'fontsize', 14);
-ylabel('Phase [deg]', 'fontsize', 14)
+legend('Order = 1', 'Order = 2', 'Order = 3', 'location', 'southwest');
+set(gca, 'fontsize', font_size);
+xlabel('Frequency (GHz)', 'fontsize', font_size);
+ylabel('Phase (deg)', 'fontsize', font_size);
 save_fig('./figures/gain_phase_bessel.eps');
 
 
