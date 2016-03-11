@@ -47,7 +47,7 @@ semilogx(f/1e9, db(squeeze(g2)), '--', 'linewidth', 2, 'color', stanford_red); h
 semilogx(f/1e9, db(squeeze(g3)), ':', 'linewidth', 2, 'color', new_blue); hold all;
 semilogx(f/1e9, db(squeeze(gid)), '--k'); hold all;
 ylim([-20, 10]);
-legend('Order = 1', 'Order = 2', 'Order = 3', 'location', 'southwest');
+% legend('Order = 1', 'Order = 2', 'Order = 3', 'location', 'southwest');
 set(gca, 'fontsize', font_size);
 xlabel('Frequency (GHz)', 'fontsize', font_size_label);
 ylabel('Magnitude (dB)', 'fontsize', font_size_label);
@@ -100,7 +100,7 @@ semilogx(f/1e9, db(squeeze(g2)), '--', 'linewidth', 2, 'color', stanford_red); h
 semilogx(f/1e9, db(squeeze(g3)), ':', 'linewidth', 2, 'color', new_blue); hold all;
 semilogx(f/1e9, db(squeeze(gid)), '--k'); hold all;
 ylim([-20, 10]);
-legend('Order = 1', 'Order = 2', 'Order = 3', 'location', 'southwest');
+% legend('Order = 1', 'Order = 2', 'Order = 3', 'location', 'southwest');
 set(gca, 'fontsize', font_size);
 xlabel('Frequency (GHz)', 'fontsize', font_size_label);
 ylabel('Magnitude (dB)', 'fontsize', font_size_label);
@@ -161,7 +161,7 @@ semilogx(flc/1e9, db(squeeze(2*g2)), '--', 'linewidth', 2, 'color', stanford_red
 semilogx(flc/1e9, db(squeeze(2*g3)), ':', 'linewidth', 2, 'color', new_blue); hold all;
 semilogx(f/1e9, db(squeeze(gid)), '--k'); hold all;
 ylim([-20, 10]);
-legend('Order = 1', 'Order = 2', 'Order = 3', 'location', 'southwest');
+% legend('Order = 1', 'Order = 2', 'Order = 3', 'location', 'southwest');
 set(gca, 'fontsize', font_size);
 xlabel('Frequency (GHz)', 'fontsize', font_size_label);
 ylabel('Magnitude (dB)', 'fontsize', font_size_label);
