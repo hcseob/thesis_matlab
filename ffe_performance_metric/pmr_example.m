@@ -39,6 +39,7 @@ ylim(ylims);
 set(gca, 'fontsize', 18);
 set(gca, 'xtick', -3:3);
 % set(gca, 'ytick', []);
+box on;
 xlabel('UIs', 'fontsize', 18);
 ylabel('Pulse Response', 'fontsize', 18);
 text(0.1, 1.05, 'p[0]', 'fontsize', 18);
@@ -63,6 +64,7 @@ xlim([1-M, N-M]);
 ylim([-0.5, 3]);
 set(gca, 'fontsize', 18);
 set(gca, 'xtick', -5:5);
+box on;
 xlabel('UIs', 'fontsize', 18);
 ylabel('Pulse Responses', 'fontsize', 18);
 
