@@ -32,7 +32,7 @@ pi_sum = pi + pi_post + pi_pre;
 ylims = [-0.2; 1.2];
 figure; hold all;
 plot(ni-M, pi, '-k', 'linewidth', 2);
-plot(n-M, p, 'ok', 'linewidth', 10, 'markersize', 3);
+plot(n-M, p, 'ok', 'linewidth', 2, 'markersize', 8, 'markerfacecolor', 'k');
 plot(repmat(n-M, [1,2]), ylims, ':k');
 xlim([-3.5, 3.5]);
 ylim(ylims);
@@ -52,9 +52,9 @@ save_fig('./figures/pmr_example_pulse_anatomy.eps');
 
 %% peak to main ratio plot
 figure; hold all;
-plot(0, ps(M, :), 'ok', 'linewidth', 6, 'markersize', 2);
+plot(0, ps(M, :), 'ok', 'linewidth', 2, 'markersize', 8, 'markerfacecolor', 'k');
 plot(ni-M, pis, '-k');
-plot(0, sum(ps(M, :)), 'ok', 'linewidth', 6, 'markersize', 2);
+plot(0, sum(ps(M, :)), 'ok', 'linewidth', 2, 'markersize', 8, 'markerfacecolor', 'k');
 plot(ni-M, sum(pis, 2), '-k', 'linewidth', 2);
 plot(n-M, ones(size(n)), '--k');
 plot(n-M, ones(size(n))*sum(ps(M, :)), '--k');
