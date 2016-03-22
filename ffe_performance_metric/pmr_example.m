@@ -71,11 +71,11 @@ ylabel('Pulse Responses', 'fontsize', 18);
 
 % text(3, 2.15, 'Peak', 'fontsize', 18);
 % text(3, 1.1, 'Main', 'fontsize', 18);
-text(-4.75, 2.15, 'Peak', 'fontsize', 18);
+text(-4.75, 2.18, 'Peak', 'fontsize', 18);
 text(-4.75, 1.1, 'Main', 'fontsize', 18);
-% text(2.5, 1.5, 'r(t)', 'fontsize', 18);
-text(-0.6, 2.2, 'r[0]', 'fontsize', 14);
-text(0.2, 1.1, 'p[0]', 'fontsize', 14);
+text(2.5, 1.5, 'r(t)', 'fontsize', 18);
+text(0.2, 2.2, 'r[0]', 'fontsize', 18);
+text(0.2, 1.15, 'p[0]', 'fontsize', 18);
 % text(0.2, 0.6, 'p[1]', 'fontsize', 14);
 % text(0.2, 0.3, 'p[-1]', 'fontsize', 14);
 % text(0.2, 0.1, 'p[2]', 'fontsize', 14);
