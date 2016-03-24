@@ -98,3 +98,14 @@ semilogx(f, phase(pd3)*180/pi); hold all;
 semilogx(f, phase(bs3)*180/pi);
 semilogx(f, phase(eq3_1)*180/pi);
 semilogx(f, phase(eq3_2)*180/pi);
+
+
+%%
+
+figure;
+semilogx(f_tg, pd1_tg, '-k'); hold all;
+semilogx(f_tg, bs1_tg, '-b'); hold all;
+semilogx(f_tg, pd2_tg, '-k'); hold all;
+semilogx(f_tg, bs2_tg, '-b'); hold all;
+semilogx(f_tg, pd3_tg, '-k'); hold all;
+semilogx(f_tg, bs3_tg, '-b'); hold all;

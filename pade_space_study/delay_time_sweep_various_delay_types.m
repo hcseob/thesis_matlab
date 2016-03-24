@@ -1,4 +1,5 @@
 function delay_time_sweep_various_delay_types
+addpath('./lib');
 run('~/thesis/matlab/thesis.m');
 load('../../data/channels/channels.mat');
 
@@ -7,41 +8,48 @@ pmr_bl = pmr_best_offset(p_norm.nel2);
 run_sweeps = false;
 if run_sweeps
     N = 20;
-    amps = zeros(N, 5);
-    pmrs = zeros(N, 5);
-    [amps(:, 2), pmrs(:, 2), c2, delays] = delay_sweep(p_norm.nel2, p_norm.t, N, 'bs1');
-    [amps(:, 3), pmrs(:, 3), c3, delays] = delay_sweep(p_norm.nel2, p_norm.t, N, 'bs2');
-    [amps(:, 4), pmrs(:, 4), c4, delays] = delay_sweep(p_norm.nel2, p_norm.t, N, 'pd1');
-    [amps(:, 5), pmrs(:, 5), c5, delays] = delay_sweep(p_norm.nel2, p_norm.t, N, 'pd2');
-    [amps(:, 6), pmrs(:, 6), c6, delays] = delay_sweep(p_norm.nel2, p_norm.t, N, 'ideal');
+    [amp_bs1, pmr_bs1, c_bs1, delays] = delay_sweep(p_norm.nel2, p_norm.t, N, 'bs1');
+    [amp_bs2, pmr_bs2, c_bs2, delays] = delay_sweep(p_norm.nel2, p_norm.t, N, 'bs2');
+    [amp_bs3, pmr_bs3, c_bs3, delays] = delay_sweep(p_norm.nel2, p_norm.t, N, 'bs3');
+    [amp_pd1, pmr_pd1, c_pd1, delays] = delay_sweep(p_norm.nel2, p_norm.t, N, 'pd1');
+    [amp_pd2, pmr_pd2, c_pd2, delays] = delay_sweep(p_norm.nel2, p_norm.t, N, 'pd2');
+    [amp_pd3, pmr_pd3, c_pd3, delays] = delay_sweep(p_norm.nel2, p_norm.t, N, 'pd3');
+    [amp_id, pmr_id, c_id, delays] = delay_sweep(p_norm.nel2, p_norm.t, N, 'ideal');
     save('delay_time_sweep_various_delay_types.mat');
 else
     load('delay_time_sweep_various_delay_types.mat');
 end
 
 figure;
-subplot(211); hold all;
-semilogx(delays/1e-12, pmrs(:, 2)/pmr_bl, '-k', 'linewidth', 2); hold all;
-semilogx(delays/1e-12, pmrs(:, 3)/pmr_bl, '--', 'color', stanford_red, 'linewidth', 2); hold all;
-semilogx(delays/1e-12, pmrs(:, 4)/pmr_bl, ':', 'color', new_blue, 'linewidth', 2); hold all;
-semilogx(delays/1e-12, pmrs(:, 5)/pmr_bl, '-o', 'color', new_blue, 'linewidth', 2); hold all;
-semilogx(delays/1e-12, pmrs(:, 6)/pmr_bl, '-x', 'color', new_blue, 'linewidth', 2); hold all;
-xlabel('Delay Time [ps]', 'fontsize', 14); 
-ylabel('DR Improvement', 'fontsize', 14); 
-set(gca, 'fontsize', 14);
+plot(delays/1e-12, pmr_bs1/pmr_bl, '-k', 'linewidth', 2); hold all;
+plot(delays/1e-12, pmr_bs2/pmr_bl, '--k', 'linewidth', 2); hold all;
+plot(delays/1e-12, pmr_bs3/pmr_bl, ':k', 'linewidth', 2); hold all;
+plot(delays/1e-12, pmr_pd1/pmr_bl, '-', 'color', stanford_red, 'linewidth', 2); hold all;
+plot(delays/1e-12, pmr_pd2/pmr_bl, '--', 'color', stanford_red, 'linewidth', 2); hold all;
+plot(delays/1e-12, pmr_pd3/pmr_bl, ':', 'color', stanford_red, 'linewidth', 2); hold all;
+plot(delays/1e-12, pmr_id/pmr_bl, '-k', 'linewidth', 3); hold all;
+xlabel('Delay Time [ps]', 'fontsize', 18); 
+ylabel('DR Improvement', 'fontsize', 18); 
+set(gca, 'fontsize', 18);
 ylim([1, 4]);
-subplot(212);
-semilogx(delays/1e-12, amps(:, 2), '-k', 'linewidth', 2); hold all;
-semilogx(delays/1e-12, amps(:, 3), '--', 'color', stanford_red, 'linewidth', 2); hold all;
-semilogx(delays/1e-12, amps(:, 4), ':', 'color', new_blue, 'linewidth', 2); hold all;
-semilogx(delays/1e-12, amps(:, 5), '-o', 'color', new_blue, 'linewidth', 2); hold all;
-semilogx(delays/1e-12, amps(:, 6), '-x', 'color', new_blue, 'linewidth', 2); hold all;
-xlabel('Delay Time [ps]', 'fontsize', 14); 
-ylabel('Attenuation', 'fontsize', 14); 
-set(gca, 'fontsize', 14);
-ylim([0, 1.5]);
+
 save_fig('./figures/delay_time_sweep_various_delay_types.eps');
 
+plot_amps = false;
+if plot_amps
+    figure;
+    plot(delays/1e-12, amp_bs1, '-k', 'linewidth', 2); hold all;
+    plot(delays/1e-12, amp_bs2, '--k', 'linewidth', 2); hold all;
+    plot(delays/1e-12, amp_bs3, ':k', 'linewidth', 2); hold all;
+    plot(delays/1e-12, amp_pd1, '-', 'color', stanford_red, 'linewidth', 2); hold all;
+    plot(delays/1e-12, amp_pd2, '--', 'color', stanford_red, 'linewidth', 2); hold all;
+    plot(delays/1e-12, amp_pd3, ':', 'color', stanford_red, 'linewidth', 2); hold all;
+    plot(delays/1e-12, amp_id, '-', 'color', new_blue, 'linewidth', 4); hold all;
+    xlabel('Delay Time [ps]', 'fontsize', 14); 
+    ylabel('Attenuation', 'fontsize', 14); 
+    set(gca, 'fontsize', 14);
+    % ylim([0, 1.5]);
+end
 %%
 % num_taps = 5;
 % delay = 14e-12;
@@ -54,9 +62,10 @@ save_fig('./figures/delay_time_sweep_various_delay_types.eps');
 end
 
 function [amp, pmr, c, delays] = delay_sweep(pulse, t, N, delay_type)
-bits = 4;
-num_taps = 4;
-delays = logspace(0, 2, N)*1e-12;
+% bits = 5;
+num_taps = 3;
+atten = 0.5;
+delays = logspace(1, 2, N)*1e-12;
 for k = 1:length(delays)
     disp(k);
     delay = delays(k);
@@ -75,7 +84,8 @@ for k = 1:length(delays)
             ps(:, j) = lsim((delay_cell)^(j-1), pulse, t);
         end
     end
-    c(:, k) = brute_force_pmr_opt(ps, bits, 1.0);
+%     c(:, k) = brute_force_pmr_opt(ps, bits, atten);
+    c(:, k) = optim_pmr_opt(ps, atten);
     amp(k) = max(ps*c(:, k));
     pmr(k) = pmr_best_offset(ps*c(:, k));
 end
