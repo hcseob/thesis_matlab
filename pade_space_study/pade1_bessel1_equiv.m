@@ -56,7 +56,7 @@ plot(t(24:50:end)/1e-12, p_pade1(24:50:end), 'o', 'color', new_blue, 'linewidth'
 xlim([0, 400]);
 ylim([-0.2, 1.2]);
 box on;
-xlabel('Time [ps]', 'fontsize', 18);
+xlabel('Time (ps)', 'fontsize', 18);
 ylabel('Pulse Response', 'fontsize', 18);
 set(gca, 'fontsize', 18);
 legend([p1, p2, p3], 'a = 0', 'a = 1/3', 'a = 1');
