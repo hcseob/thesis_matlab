@@ -21,26 +21,27 @@ else
 end
 
 figure;
-plot(delays/1e-12, pmr_bs1/pmr_bl, '-k', 'linewidth', 2); hold all;
-plot(delays/1e-12, pmr_bs2/pmr_bl, '--k', 'linewidth', 2); hold all;
-plot(delays/1e-12, pmr_bs3/pmr_bl, ':k', 'linewidth', 2); hold all;
-plot(delays/1e-12, pmr_pd1/pmr_bl, '-', 'color', stanford_red, 'linewidth', 2); hold all;
+p7 = plot(delays/1e-12, pmr_id/pmr_bl, '-k', 'linewidth', 3); hold all;
+p1 = plot(delays/1e-12, pmr_bs1/pmr_bl, '-k', 'color', new_blue, 'linewidth', 2); hold all;
+p2 = plot(delays/1e-12, pmr_bs2/pmr_bl, '--k', 'color', new_blue, 'linewidth', 2); hold all;
+p3 = plot(delays/1e-12, pmr_bs3/pmr_bl, ':k', 'color', new_blue, 'linewidth', 2); hold all;
+p4 = plot(delays/1e-12, pmr_pd1/pmr_bl, '-', 'color', stanford_red, 'linewidth', 2); hold all;
 plot(delays/1e-12, pmr_pd2/pmr_bl, '--', 'color', stanford_red, 'linewidth', 2); hold all;
 plot(delays/1e-12, pmr_pd3/pmr_bl, ':', 'color', stanford_red, 'linewidth', 2); hold all;
-plot(delays/1e-12, pmr_id/pmr_bl, '-k', 'linewidth', 3); hold all;
-xlabel('Delay Time [ps]', 'fontsize', 18); 
+xlabel('Delay Time (ps)', 'fontsize', 18); 
 ylabel('DR Improvement', 'fontsize', 18); 
 set(gca, 'fontsize', 18);
 ylim([1, 4]);
-
+% legend('First Order', 'Second Order', 'Third Order');
+legend([p1, p4, p7], {'Bessel', 'Pade', 'Ideal'});
 save_fig('./figures/delay_time_sweep_various_delay_types.eps');
 
 plot_amps = false;
 if plot_amps
     figure;
-    plot(delays/1e-12, amp_bs1, '-k', 'linewidth', 2); hold all;
-    plot(delays/1e-12, amp_bs2, '--k', 'linewidth', 2); hold all;
-    plot(delays/1e-12, amp_bs3, ':k', 'linewidth', 2); hold all;
+    plot(delays/1e-12, amp_bs1, '-', 'linewidth', 2); hold all;
+    plot(delays/1e-12, amp_bs2, '--', 'linewidth', 2); hold all;
+    plot(delays/1e-12, amp_bs3, ':', 'linewidth', 2); hold all;
     plot(delays/1e-12, amp_pd1, '-', 'color', stanford_red, 'linewidth', 2); hold all;
     plot(delays/1e-12, amp_pd2, '--', 'color', stanford_red, 'linewidth', 2); hold all;
     plot(delays/1e-12, amp_pd3, ':', 'color', stanford_red, 'linewidth', 2); hold all;
