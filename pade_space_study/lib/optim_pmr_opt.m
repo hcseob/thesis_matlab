@@ -1,7 +1,7 @@
 function [coeffs_opt, pmr_opt, p_opt] = optim_pmr_opt(ps, threshold, x0)
 num_taps = size(ps, 2);
 if nargin < 3 
-    x0 = zeros(num_taps-1, 1)
+    x0 = zeros(num_taps-1, 1);
 else
     x0 = x0([1, 3:num_taps]);
 end

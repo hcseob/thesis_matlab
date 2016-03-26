@@ -19,15 +19,14 @@ else
 end
 
 figure;
-plot(bitss, pmrs(:, 3)/pmr_bl, '-ok', 'linewidth', 3, 'markerfacecolor', 'k', 'markersize', 8); hold all;
-plot(bitss, pmrs(:, 4)/pmr_bl, '--o', 'color', stanford_red, 'linewidth', 3, 'markerfacecolor', stanford_red, 'markersize', 8); hold all;
-plot(bitss, pmrs(:, 5)/pmr_bl, ':o', 'color', new_blue, 'linewidth', 3, 'markerfacecolor', new_blue, 'markersize', 8); hold all;
+plot(bitss, pmrs(:, 3)/pmr_bl, '-ok', 'linewidth', 2, 'marker); hold all;
+plot(bitss, pmrs(:, 4)/pmr_bl, '--o', 'color', stanford_red, 'linewidth', 2); hold all;
+plot(bitss, pmrs(:, 5)/pmr_bl, ':o', 'color', new_blue, 'linewidth', 2); hold all;
 xlabel('Coefficient Bit Resolution', 'fontsize', 18); 
 ylabel('DR Improvement', 'fontsize', 18); 
 ylim([1, 4])
 set(gca, 'xtick', 1:5);
 set(gca, 'fontsize', 18);
-legend('n = 3', 'n = 4', 'n = 5', 'location', 'southeast');
 save_fig('./figures/bit_res_sweep.eps');
 
 plot_amps = false;
