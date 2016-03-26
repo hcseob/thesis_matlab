@@ -27,10 +27,10 @@ ylabel('DR Improvement', 'fontsize', 18);
 ylim([1, 4])
 set(gca, 'xtick', 1:5);
 set(gca, 'fontsize', 18);
-legend('n = 3', 'n = 4', 'n = 5', 'location', 'southeast');
+legend('n = 3', 'n = 4', 'n = 5', 'location', 'northwest');
 save_fig('./figures/bit_res_sweep.eps');
 
-plot_amps = false;
+plot_amps = true;
 if plot_amps
     figure;
     plot(bitss, amps(:, 3), '-k', 'linewidth', 2); hold all;
@@ -53,7 +53,7 @@ for k = 1:length(bitss)
     for j = 1:num_taps
         ps(:, j) = lsim((delay_cell)^(j-1), pulse, t);
     end
-    c(:, k) = brute_force_pmr_opt(ps, bits, 0.2);
+    c(:, k) = brute_force_pmr_opt(ps, bits, 0.5);
 %     disp(c);
     amp(k) = max(ps*c(:, k));
     pmr(k) = pmr_best_offset(ps*c(:, k));
