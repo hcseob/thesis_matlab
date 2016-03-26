@@ -26,7 +26,7 @@ xlabel('Main Cursor Scale Factor', 'fontsize', 18);
 ylabel('PMR', 'fontsize', 18); 
 ylim([1, 4])
 set(gca, 'fontsize', 18);
-legend('n = 3', 'n = 4', 'n = 5', 'location', 'southwest');
+legend('', 'location', 'southwest
 save_fig('./figures/amplitude_sweep.eps');
 
 plot_amps = true;
