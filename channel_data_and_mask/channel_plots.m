@@ -11,7 +11,7 @@ xlim([0, 15]);
 ylim([0, 50]);
 set(gca, 'fontsize', 18);
 xlabel('Frequency (GHz)', 'fontsize', 18);
-ylabel('Insertion Loss', 'fontsize', 18);
+ylabel('Insertion Loss (dB)', 'fontsize', 18);
 legend('0.76 m FR4 ref', '1.09 m FR4 ref', '1.0 m Meg ref');
 axis ij;
 box on;
@@ -34,7 +34,7 @@ plot(t_baud/1e-12, nel2_baud, 'o', 'linewidth', 2, 'color', stanford_red, 'marke
 plot(t_baud/1e-12, ibm_baud, 'o', 'linewidth', 2, 'color', new_blue, 'markerfacecolor', new_blue, 'markersize', 8);
 
 set(gca, 'fontsize', 18);
-xlabel('Time (ns)', 'fontsize', 18);
+xlabel('Time (ps)', 'fontsize', 18);
 ylabel('Normalized Pulse Response', 'fontsize', 18);
 xlim([0, 800]);
 ylim([-0.2, 1.2]);
