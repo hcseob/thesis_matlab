@@ -23,7 +23,7 @@ plot(amp_lim, pmrs(:, 3)/pmr_bl, '-k', 'linewidth', 3); hold all;
 plot(amp_lim, pmrs(:, 4)/pmr_bl, '--', 'color', stanford_red, 'linewidth', 3); hold all;
 plot(amp_lim, pmrs(:, 5)/pmr_bl, ':', 'color', new_blue, 'linewidth', 3); hold all;
 xlabel('Main Cursor Scale Factor', 'fontsize', 18); 
-ylabel('PMR', 'fontsize', 18); 
+ylabel('DR Improvement', 'fontsize', 18); 
 ylim([1, 4])
 set(gca, 'fontsize', 18);
 legend('n = 3', 'n = 4', 'n = 5', 'location', 'southwest');
