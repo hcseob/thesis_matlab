@@ -4,6 +4,7 @@ run('~/thesis/matlab/thesis.m');
 load('../../data/channels/channels.mat');
 
 pmr_bl = pmr_best_offset(p_norm.nel2);
+disp(1/pmr_bl);
 
 run_sweeps = false;
 if run_sweeps
