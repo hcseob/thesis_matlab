@@ -12,7 +12,7 @@ ylim([0, 50]);
 set(gca, 'fontsize', 18);
 xlabel('Frequency (GHz)', 'fontsize', 18);
 ylabel('Insertion Loss (dB)', 'fontsize', 18);
-legend('0.76 m FR4 ref', '1.09 m FR4 ref', '1.0 m Meg ref');
+legend('0.76 m FR4', '1.09 m FR4', '1.0 m Meg');
 axis ij;
 box on;
 save_fig('./figures/channel_plots_insertion_loss.eps');
@@ -39,6 +39,6 @@ ylabel('Normalized Pulse Response', 'fontsize', 18);
 xlim([0, 800]);
 ylim([-0.2, 1.2]);
 box on;
-legend('0.76 m FR4 ref', '1.09 m FR4 ref', '1.0 m Meg ref');
+legend('0.76 m FR4', '1.09 m FR4', '1.0 m Meg');
 save_fig('./figures/channel_plots_pulse_resp.eps');
 
