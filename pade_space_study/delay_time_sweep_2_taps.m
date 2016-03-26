@@ -19,16 +19,15 @@ pmr_nel3_bl = pmr_best_offset(p_norm.nel3);
 save('delay_time_sweep_2_taps.mat');
 
 figure;
-plot(delays/1e-12, pmr_ibm/pmr_ibm_bl, '-k', 'linewidth', 3); hold all;
-% plot(delays/1e-12, pmr_nel0/pmr_nel0_bl); hold all;
-% plot(delays/1e-12, pmr_nel1/pmr_nel1_bl); hold all;
+plot(delays/1e-12, pmr_nel0/pmr_nel0_bl, '-', 'color', 'k', 'linewidth', 3); hold all;
 plot(delays/1e-12, pmr_nel2/pmr_nel2_bl, '--', 'color', stanford_red, 'linewidth', 3); hold all;
-plot(delays/1e-12, pmr_nel3/pmr_nel3_bl, ':', 'color', new_blue, 'linewidth', 3); hold all;
+plot(delays/1e-12, pmr_ibm/pmr_ibm_bl, ':', 'color', new_blue, 'linewidth', 3); hold all;
+
 xlabel('Delay Time (ps)', 'fontsize', 18); 
 ylabel('DR Improvement', 'fontsize', 18); 
 ylim([1, 4]);
 set(gca, 'fontsize', 18);
-legend('1m FR4 [ibm]', '1m FR4 [nel]', '1m Meg [nel]');
+legend('0.76 m FR4', '1.09 m FR4', '1.0 m Meg');
 save_fig('./figures/delay_time_sweep_2_taps.eps');
 
 plot_amps = true;
