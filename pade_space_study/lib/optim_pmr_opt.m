@@ -1,4 +1,4 @@
-function [coeffs_opt, pmr_opt, p_opt] = optim_pmr_opt(ps, threshold, x0)
+function c_opt = optim_pmr_opt(ps, threshold, x0)
 num_taps = size(ps, 2);
 if nargin < 3 
     x0 = zeros(num_taps-1, 1);
@@ -27,10 +27,12 @@ beq = [];
 A = [];
 b = [];
 
-options = optimset('MaxFunEvals', 10000, 'Algorithm', 'active-set', 'Display', 'none');
+options = optimset('MaxFunEvals', 10000, ...
+                   'Algorithm', 'active-set', ...
+                   'Display', 'none');
 
-[x, pmr_opt] = fmincon(fun, x0, A, b, Aeq, beq, lb, ub, nonlcon, options);
+x = fmincon(fun, x0, A, b, Aeq, beq, ...
+                       lb, ub, nonlcon, options);
 
-coeffs_opt = [x(1); 1; x(2:end)];
-p_opt = ps*coeffs_opt;
+c_opt = [x(1); 1; x(2:end)];
 end

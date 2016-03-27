@@ -13,8 +13,12 @@ for j = 1:num_taps
     ps(:, j) = lsim((delay_cell)^(j-1), p, t);
 end
 
-c_opt = brute_force(ps, 4);
 
-figure;
-plot(t, ps*c_opt); hold all;
-plot(t, ps);
+threshold = 0.5;
+for N = 2.^(1:5)
+    disp(N);
+    c_opt = brute_force(ps, N, threshold);
+
+    figure(1);
+    plot(t, ps*c_opt); hold all;
+end
