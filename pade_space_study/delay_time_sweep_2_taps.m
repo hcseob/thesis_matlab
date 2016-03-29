@@ -20,8 +20,11 @@ save('delay_time_sweep_2_taps.mat');
 
 figure;
 plot(delays/1e-12, pmr_nel0/pmr_nel0_bl, '-', 'color', 'k', 'linewidth', 3); hold all;
+plot([1, 1]*35, [1, 4], ':', 'color', 'k', 'linewidth', 1); hold all;
 plot(delays/1e-12, pmr_nel2/pmr_nel2_bl, '--', 'color', stanford_red, 'linewidth', 3); hold all;
+plot([1, 1]*48, [1, 4], ':', 'color', stanford_red, 'linewidth', 1); hold all;
 plot(delays/1e-12, pmr_ibm/pmr_ibm_bl, ':', 'color', new_blue, 'linewidth', 3); hold all;
+plot([1, 1]*30, [1, 4], ':', 'color', new_blue, 'linewidth', 1); hold all;
 
 xlabel('Delay Time (ps)', 'fontsize', 18); 
 ylabel('DR Improvement', 'fontsize', 18); 
@@ -30,7 +33,7 @@ set(gca, 'fontsize', 18);
 legend('0.76 m FR4', '1.09 m FR4', '1.0 m Meg');
 save_fig('./figures/delay_time_sweep_2_taps.eps');
 
-plot_amps = true;
+plot_amps = false;
 if plot_amps
     figure;
     semilogx(delays/1e-12, amp_ibm, '-k', 'linewidth', 2); hold all;

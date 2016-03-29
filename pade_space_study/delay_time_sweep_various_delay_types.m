@@ -29,6 +29,8 @@ p3 = plot(delays/1e-12, pmr_bs3/pmr_bl, ':k', 'color', new_blue, 'linewidth', 2)
 p4 = plot(delays/1e-12, pmr_pd1/pmr_bl, '-', 'color', stanford_red, 'linewidth', 2); hold all;
 plot(delays/1e-12, pmr_pd2/pmr_bl, '--', 'color', stanford_red, 'linewidth', 2); hold all;
 plot(delays/1e-12, pmr_pd3/pmr_bl, ':', 'color', stanford_red, 'linewidth', 2); hold all;
+plot([1, 1]*30, [1, 4], ':', 'color', 'k', 'linewidth', 1); hold all;
+
 xlabel('Delay Time (ps)', 'fontsize', 18); 
 ylabel('DR Improvement', 'fontsize', 18); 
 set(gca, 'fontsize', 18);

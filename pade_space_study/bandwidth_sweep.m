@@ -22,6 +22,7 @@ figure;
 semilogx(BWs/1e9, pmrs(:, 3)/pmr_bl, '-k', 'linewidth', 3); hold all;
 semilogx(BWs/1e9, pmrs(:, 4)/pmr_bl, '--', 'color', stanford_red, 'linewidth', 3); hold all;
 semilogx(BWs/1e9, pmrs(:, 5)/pmr_bl, ':', 'color', new_blue, 'linewidth', 3); hold all;
+semilogx([20, 20], [1, 4], ':', 'color', 'k', 'linewidth', 1); hold all;
 xlabel('Bandwidth (GHz)', 'fontsize', 18); 
 ylabel('DR Improvement', 'fontsize', 18); 
 ylim([1, 4])
