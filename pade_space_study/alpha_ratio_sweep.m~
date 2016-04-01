@@ -3,10 +3,10 @@ run('~/thesis/matlab/thesis.m');
 load('../../data/channels/channels.mat');
 
 pmr_bl = pmr_best_offset(p_norm.nel2);
-run_sweeps = false;
+run_sweeps = true;
 if run_sweeps
     N = 10;
-    alphas = linspace(0, 1, N);
+    alphas = logspace(-1, 1, N);
     amps = zeros(N, 5);
     pmrs = zeros(N, 5);
     [amp_neq5, pmr_neq5, c2] = delay_sweep(p_norm.nel2, p_norm.t, 3, 3, alphas);
@@ -18,27 +18,27 @@ else
 end
 
 figure;
-plot(alphas, pmr_neq3/pmr_bl, '-k', 'linewidth', 2); hold all;
-plot(alphas, pmr_neq4/pmr_bl, '--', 'color', stanford_red, 'linewidth', 2); hold all;
-plot(alphas, pmr_neq5/pmr_bl, ':', 'color', new_blue, 'linewidth', 2); hold all;
-xlabel('Pole and Zero Ratio', 'fontsize', 18); 
-ylabel('DR Improvement', 'fontsize', 18); 
-ylim([1, 4]);
-legend('n=3', 'n=4', 'n=5', 'location', 'northwest');
-set(gca, 'fontsize', 18);
-save_fig('./figures/alpha_ratio_sweep.eps');
+subplot(211);
 
-plot_amps = true;
-if plot_amps
-    figure;
-    plot(alphas, amp_neq3, '-k', 'linewidth', 2); hold all;
-    plot(alphas, amp_neq4, '--', 'color', stanford_red, 'linewidth', 2); hold all;
-    plot(alphas, amp_neq5, '-.', 'color', new_blue, 'linewidth', 2); hold all;
-    xlabel('Pole/Zero Ratio', 'fontsize', 18); 
-    ylabel('Attenuation', 'fontsize', 18); 
-    ylim([0, 3])
-    set(gca, 'fontsize', 18);
-end
+semilogx(alphas, pmr_neq3/pmr_bl, '-k', 'linewidth', 2); hold all;
+semilogx(alphas, pmr_neq4/pmr_bl, '--', 'color', stanford_red, 'linewidth', 2); hold all;
+semilogx(alphas, pmr_neq5/pmr_bl, ':', 'color', new_blue, 'linewidth', 2); hold all;
+xlabel('Pole/Zero Ratio', 'fontsize', 18); 
+ylabel('DR Improvement', 'fontsize', 18); 
+ylim([1, 5]);
+% legend('bits=3', 'bits=4', 'bits=5');
+set(gca, 'fontsize', 18);
+
+subplot(212);
+semilogx(alphas, amp_neq3, '-k', 'linewidth', 2); hold all;
+semilogx(alphas, amp_neq4, '--', 'color', stanford_red, 'linewidth', 2); hold all;
+semilogx(alphas, amp_neq5, '-.', 'color', new_blue, 'linewidth', 2); hold all;
+xlabel('Pole/Zero Ratio', 'fontsize', 18); 
+ylabel('Attenuation', 'fontsize', 18); 
+ylim([0, 3])
+set(gca, 'fontsize', 18);
+
+save_fig('./figures/alpha_ratio_sweep.eps');
 
 end
 
