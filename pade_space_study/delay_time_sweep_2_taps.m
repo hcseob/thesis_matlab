@@ -19,18 +19,18 @@ pmr_nel3_bl = pmr_best_offset(p_norm.nel3);
 save('delay_time_sweep_2_taps.mat');
 
 figure;
-plot(delays/1e-12, pmr_nel0/pmr_nel0_bl, '-', 'color', 'k', 'linewidth', 3); hold all;
-plot([1, 1]*35, [1, 4], ':', 'color', 'k', 'linewidth', 1); hold all;
-plot(delays/1e-12, pmr_nel2/pmr_nel2_bl, '--', 'color', stanford_red, 'linewidth', 3); hold all;
-plot([1, 1]*48, [1, 4], ':', 'color', stanford_red, 'linewidth', 1); hold all;
-plot(delays/1e-12, pmr_ibm/pmr_ibm_bl, ':', 'color', new_blue, 'linewidth', 3); hold all;
-plot([1, 1]*30, [1, 4], ':', 'color', new_blue, 'linewidth', 1); hold all;
+p1=plot(delays/1e-12, pmr_nel1/pmr_nel1_bl, '-', 'color', 'k', 'linewidth', 3); hold all;
+plot([1, 1]*22, [1, 4], ':', 'color', 'k', 'linewidth', 1); hold all;
+p2=plot(delays/1e-12, pmr_nel0/pmr_nel0_bl, '--', 'color', stanford_red, 'linewidth', 3); hold all;
+plot([1, 1]*33, [1, 4], ':', 'color', stanford_red, 'linewidth', 1); hold all;
+p3=plot(delays/1e-12, pmr_nel2/pmr_nel2_bl, ':', 'color', new_blue, 'linewidth', 3); hold all;
+plot([1, 1]*46, [1, 4], ':', 'color', new_blue, 'linewidth', 1); hold all;
+legend([p1, p2, p3], {'0.76 m Meg', '0.76 m FR4', '1.09 m FR4'});
 
 xlabel('Delay Time (ps)', 'fontsize', 18); 
 ylabel('DR Improvement', 'fontsize', 18); 
 ylim([1, 4]);
 set(gca, 'fontsize', 18);
-legend('0.76 m FR4', '1.09 m FR4', '1.0 m Meg');
 save_fig('./figures/delay_time_sweep_2_taps.eps');
 
 plot_amps = false;
@@ -51,7 +51,7 @@ end
 function [amp, pmr, c, delays] = delay_sweep(pulse, t)
 num_taps = 2; 
 bits = 5;
-delays = logspace(0, 2, 20)*1e-12;
+delays = logspace(0, 2, 30)*1e-12;
 for k = 1:length(delays)
     delay = delays(k); 
     delay_cell = bessel_sys(1, delay);
