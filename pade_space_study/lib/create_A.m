@@ -5,7 +5,6 @@ for m = 0:N-1
         A(m+1, n+1) = create_a_mn(m, n, N, alpha);
     end
 end
-
 end
 
 function a_mn = create_a_mn(m, n, N, alpha)
