@@ -63,9 +63,6 @@ h_eqs(:, 4) = circshift(hs(:, 4), 75);
 h_eqs(:, 5) = circshift(hs(:, 4), 100);
 h_eq = h_eqs*coeffs_opt/31;
 save('h_eq.mat', 't_h', 'h_eq');
-figure; hold all;
-plot(t_h, h_eqs, '-k');
-plot(t_h, h_eq);
 
 %%
 load('x.mat');
@@ -84,15 +81,6 @@ plot(t/1e-12, y4a);
 plot(t/1e-12, y_eqa*5);
 xlim(x_lim); ylim(y_lim);
 
-%%
-figure; hold all;
-plot(t/1e-12, 4*y_eqa, '-k', 'linewidth', 3);
-xlim(x_lim); ylim(y_lim); axis off;
-
-plot(t(25:50:end)/1e-12, 4*y_eqa(25:50:end), 'ok', 'linewidth', 3);
-
-plot(t/1e-12, 4*y_eqa, '-k', 'linewidth', 10);
-xlim(x_lim); ylim(y_lim); axis off;
 
 %% eye diagrams
 figure; hold all;
@@ -113,16 +101,21 @@ h4_fft = h4_fft/h4_fft(1);
 ratio_fft = h_eq_fft./h4_fft;
 
 f = (0:N-1)/N/1e-12;
+%%
+figure;
+semilogx(f/1e9, db(10*h_eq_fft), '-', 'color', 'k', 'linewidth', 3); hold all;
+semilogx(f/1e9, db(10*ratio_fft), '--', 'color', stanford_red, 'linewidth', 3); hold all;
 
-figure; 
-semilogx(f/1e9, db(h4_fft), '-k', 'linewidth', 3); hold all;
+semilogx(f/1e9, db(h4_fft), ':', 'color', new_blue, 'linewidth', 3); hold all;
 xlim([1, 30]);
-ylim([-60, 20]);
-xlabel('Frequency [GHz]');
-ylabel('Magnitude [dB]');
-semilogx(f/1e9, db(ratio_fft), '--k', 'linewidth', 3); hold all;
-semilogx(f/1e9, db(h_eq_fft), '-', 'color', stanford_red, 'linewidth', 3); hold all;
+ylim([-40, 40]);
+set(gca, 'fontsize', 18);
+legend('Equalized', 'FFE', 'Channel', 'location', 'northwest');
+xlabel('Frequency (GHz)', 'fontsize', 18);
+ylabel('Normalized Magnitude (dB)', 'fontsize', 18);
+save_fig('./figures/equalization_example_freq_domain.eps');
 
+%%
 figure; 
 semilogx(f/1e9, db(h4_fft), '-k', 'linewidth', 3); hold all;
 semilogx(f/1e9, db(10*h_eq_fft), '-', 'color', stanford_red, 'linewidth', 3); hold all;

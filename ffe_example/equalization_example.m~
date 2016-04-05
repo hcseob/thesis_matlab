@@ -33,24 +33,26 @@ t_ui = (t_os-25e-12)/50e-12;
 t_baud_ui = (t_2xbaud(1:2:end)-25e-12)/50e-12;
 figure; hold all;
 for k = 1:5
-    plot(t_ui, p_os(:, k)*coeffs_opt(k)/31, '-k', 'linewidth', 1);
+    p_summed = plot(t_ui, p_os(:, k)*coeffs_opt(k)/31, '-k', 'linewidth', 1);
 %     plot(t_2xbaud(1:2:end), p_2xbaud(1:2:end, k)*coeffs_opt(k)/31, 'ok');
 end
 p_eq = plot(t_ui, p_os*coeffs_opt/31, '-k', 'linewidth', 3);
 plot(t_baud_ui, p_2xbaud(1:2:end, :)*coeffs_opt/31, 'ok', 'linewidth', 2, 'markerfacecolor', 'k', 'markersize', 8);
 xlim([0, 7]);
+set(gca, 'xtick', 0:7)
 xlabel('Time (UI)', 'fontsize', 18);
 ylabel('Pulse Response', 'fontsize', 18);
 set(gca, 'fontsize', 18);
 ylim([-1.1, 1.1]);
 box on;
+legend([p_summed, p_eq], {'Summed Pulses', 'Equalized Pulse'});
 save_fig('./figures/equalization_example_pulse_responses.eps');
 
 %%
 p_ch = plot(t_ui, p_opt_amp*p_os(:, 1), '--', 'color', stanford_red, 'linewidth', 3);
 plot(t_baud_ui, p_opt_amp*p_2xbaud(1:2:end, 1), 'o', 'linewidth', 2, 'color', stanford_red, 'markerfacecolor', stanford_red, 'markersize', 8);
 ylim([-0.1, 0.3]);
-legend([p_ch, p_eq], {'Channel Pulse', 'Equalized Pulse'});
+legend([p_summed, p_eq, p_ch], {'Summed Pulses', 'Equalized Pulse', 'Channel Pulse'});
 save_fig('./figures/equalization_example_pulse_responses_zoomed.eps');
 
 %%
@@ -61,9 +63,6 @@ h_eqs(:, 4) = circshift(hs(:, 4), 75);
 h_eqs(:, 5) = circshift(hs(:, 4), 100);
 h_eq = h_eqs*coeffs_opt/31;
 save('h_eq.mat', 't_h', 'h_eq');
-figure; hold all;
-plot(t_h, h_eqs, '-k');
-plot(t_h, h_eq);
 
 %%
 load('x.mat');
@@ -82,15 +81,6 @@ plot(t/1e-12, y4a);
 plot(t/1e-12, y_eqa*5);
 xlim(x_lim); ylim(y_lim);
 
-%%
-figure; hold all;
-plot(t/1e-12, 4*y_eqa, '-k', 'linewidth', 3);
-xlim(x_lim); ylim(y_lim); axis off;
-
-plot(t(25:50:end)/1e-12, 4*y_eqa(25:50:end), 'ok', 'linewidth', 3);
-
-plot(t/1e-12, 4*y_eqa, '-k', 'linewidth', 10);
-xlim(x_lim); ylim(y_lim); axis off;
 
 %% eye diagrams
 figure; hold all;
@@ -111,16 +101,20 @@ h4_fft = h4_fft/h4_fft(1);
 ratio_fft = h_eq_fft./h4_fft;
 
 f = (0:N-1)/N/1e-12;
+%%
+figure;
+semilogx(f/1e9, db(10*h_eq_fft), '-', 'color', 'k', 'linewidth', 3); hold all;
+semilogx(f/1e9, db(10*ratio_fft), '--', 'color', stanford_red, 'linewidth', 3); hold all;
 
-figure; 
-semilogx(f/1e9, db(h4_fft), '-k', 'linewidth', 3); hold all;
+semilogx(f/1e9, db(h4_fft), ':', 'color', new_blue, 'linewidth', 3); hold all;
 xlim([1, 30]);
-ylim([-60, 20]);
-xlabel('Frequency [GHz]');
-ylabel('Magnitude [dB]');
-semilogx(f/1e9, db(ratio_fft), '--k', 'linewidth', 3); hold all;
-semilogx(f/1e9, db(h_eq_fft), '-', 'color', stanford_red, 'linewidth', 3); hold all;
+ylim([-40, 40]);
+set(gca, 'fontsize', 18);
+legend('Equalized', 'F', 'FFE', 'location', 'northwest');
+xlabel('Frequency (GHz)', 'fontsize', 18);
+ylabel('Magnitude (dB)', 'fontsize', 18);
 
+%%
 figure; 
 semilogx(f/1e9, db(h4_fft), '-k', 'linewidth', 3); hold all;
 semilogx(f/1e9, db(10*h_eq_fft), '-', 'color', stanford_red, 'linewidth', 3); hold all;
