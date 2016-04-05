@@ -133,14 +133,26 @@ xe3s = circshift(xe3, shift);
 xo3s = circshift(xo3, shift);
 
 %%
-S = 800;
-X = [xe3s(1:800), xo3s(1:800), xe2s(1:800), xo2s(1:800)];
-tn = tk(1:800);
+S = 600;
+X = [xe3s(1:S), xo3s(1:S), xe2s(1:S), xo2s(1:S)];
+tn = tk(1:S);
+p0n = interp1(t, p0, tn);
+
 figure; hold all;
 plot(tn, X(:, 1), '-k');
 plot(tn, X(:, 2), '-b');
 plot(tn, X(:, 3), '-r');
-plot(tn, X(:, 3), '-g');
-plot(t, p0, '-k', 'linewidth', 2);
+plot(tn, X(:, 4), '-g');
+plot(tn, p0n, '-k', 'linewidth', 2);
 % xlim([4e-9, 6e-9])
+
+c = X\p0n;
+
+plot(tn, X*c, '-r', 'linewidth', 2);
+
+%%
+figure; hold all;
+plot(real(X0).^2);
+plot(imag(X0).^2);
+plot(real(X0).^2+imag(X0).^2);
 
