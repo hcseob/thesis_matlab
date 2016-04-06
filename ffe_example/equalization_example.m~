@@ -104,14 +104,14 @@ f = (0:N-1)/N/1e-12;
 %%
 figure;
 semilogx(f/20e9, db(10*h_eq_fft), '-', 'color', 'k', 'linewidth', 3); hold all;
-semilogx(f/1e9, db(10*ratio_fft), '--', 'color', stanford_red, 'linewidth', 3); hold all;
+semilogx(f/20e9, db(10*ratio_fft), '--', 'color', stanford_red, 'linewidth', 3); hold all;
 
-semilogx(f/1e9, db(h4_fft), ':', 'color', new_blue, 'linewidth', 3); hold all;
-xlim([1, 30]);
+semilogx(f/20e9, db(h4_fft), ':', 'color', new_blue, 'linewidth', 3); hold all;
+xlim([0.1, 2]);
 ylim([-40, 40]);
 set(gca, 'fontsize', 18);
 legend('Equalized', 'FFE', 'Channel', 'location', 'northwest');
-xlabel('Frequency (GHz)', 'fontsize', 18);
+xlabel('Frequency (fbaud)', 'fontsize', 18);
 ylabel('Normalized Magnitude (dB)', 'fontsize', 18);
 save_fig('./figures/equalization_example_freq_domain.eps');
 
