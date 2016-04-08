@@ -112,6 +112,7 @@ plot(UIs(os:50:end), y2(1+os:50:end), 'o', 'color', 'k', 'linewidth', 2, 'marker
 plot([UIs(1), UIs(end)], max(y2)*ones(2, 1), '--', 'color', 'k', 'linewidth', 1);
 xlim([0, 15])
 ylim([-0.2, 2.5]);
+box on;
 set(gca, 'ytick', [0, 1, 2, 3]);
 set(gca, 'fontsize', 18);
 xlabel('Time (UI)', 'fontsize', 18);
