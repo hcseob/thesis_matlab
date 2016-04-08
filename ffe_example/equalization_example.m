@@ -101,14 +101,14 @@ y2 = y2/max(y2(1:300));
 UIs = (t-900e-12)/50e-12;
 
 figure; hold all;
-p0 = plot(UIs, y0, ':', 'color', new_blue, 'linewidth', 2);
-p1 = plot(UIs, y1, '--', 'color', stanford_red, 'linewidth', 2);
-plot(UIs(os:50:end), y1(1+os:50:end), 'o', 'color', stanford_red, 'linewidth', 2, 'markerfacecolor', stanford_red, 'markersize', 6);
+p0 = plot(UIs, y0, ':', 'color', new_blue, 'linewidth', 3);
+p1 = plot(UIs, y1, '--', 'color', stanford_red, 'linewidth', 3);
+plot(UIs(os:50:end), y1(1+os:50:end), 'o', 'color', stanford_red, 'linewidth', 2, 'markerfacecolor', stanford_red, 'markersize', 8);
 plot([UIs(1), UIs(end)], max(y1)*ones(2, 1), '--', 'color', stanford_red, 'linewidth', 1);
 
 
-p2 = plot(UIs, y2, 'color', 'k', 'linewidth', 2);
-plot(UIs(os:50:end), y2(1+os:50:end), 'o', 'color', 'k', 'linewidth', 2, 'markerfacecolor', 'k', 'markersize', 6);
+p2 = plot(UIs, y2, 'color', 'k', 'linewidth', 3);
+plot(UIs(os:50:end), y2(1+os:50:end), 'o', 'color', 'k', 'linewidth', 2, 'markerfacecolor', 'k', 'markersize', 8);
 plot([UIs(1), UIs(end)], max(y2)*ones(2, 1), '--', 'color', 'k', 'linewidth', 1);
 xlim([0, 15])
 ylim([-0.2, 2.5]);
