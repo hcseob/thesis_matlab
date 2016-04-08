@@ -117,7 +117,7 @@ set(gca, 'ytick', [0, 1, 2, 3]);
 set(gca, 'fontsize', 18);
 xlabel('Time (UI)', 'fontsize', 18);
 ylabel('Normalized Amplitude', 'fontsize', 18);
-legend([p0, p1, p2], {'tx signal', 'rx signal', 'eq signal'}, 'location', 'northwest');
+legend([p0, p1, p2], {'Transmit Signal', 'Receive Signal', 'Equalized Signal'}, 'location', 'northwest');
 save_fig('./figures/equalization_example_pmr_comp.eps');
 
 %% eye diagrams
