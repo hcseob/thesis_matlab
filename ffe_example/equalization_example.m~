@@ -89,12 +89,35 @@ y_eqa = prbs_align(x, y_eq);
 y4 = convData(x, hs(:, 4));
 y4a = prbs_align(x, y4);
 
-figure; hold all;
-plot(t/1e-12, x);
-plot(t/1e-12, y4a);
-plot(t/1e-12, y_eqa*5);
-xlim(x_lim); ylim(y_lim);
+%%
+os = 26;
+eq_norm = y_eqa*4.4-0.5;
+y0 = (x - min(x))/2;
+y1 = (y4a - min(y4a))/2;
+y2 = (eq_norm - min(eq_norm) - 0.1)/2;
+y1 = y1/max(y2(1:300));
+y2 = y2/max(y2(1:300));
 
+UIs = (t-900e-12)/50e-12;
+
+figure; hold all;
+p0 = plot(UIs, y0, ':', 'color', new_blue, 'linewidth', 2);
+p1 = plot(UIs, y1, '--', 'color', stanford_red, 'linewidth', 2);
+plot(UIs(os:50:end), y1(1+os:50:end), 'o', 'color', stanford_red, 'linewidth', 2, 'markerfacecolor', stanford_red, 'markersize', 6);
+plot([UIs(1), UIs(end)], max(y1)*ones(2, 1), '--', 'color', stanford_red, 'linewidth', 1);
+
+
+p2 = plot(UIs, y2, 'color', 'k', 'linewidth', 2);
+plot(UIs(os:50:end), y2(1+os:50:end), 'o', 'color', 'k', 'linewidth', 2, 'markerfacecolor', 'k', 'markersize', 6);
+plot([UIs(1), UIs(end)], max(y2)*ones(2, 1), '--', 'color', 'k', 'linewidth', 1);
+xlim([0, 15])
+ylim([-0.1, 2.5]);
+set(gca, 'ytick', [0, 1, 2, 3]);
+set(gca, 'fontsize', 18);
+xlabel('Time (UI)', 'fontsize', 18);
+ylabel('Normalized Amplitude', 'fontsize', 18);
+legend([p0, p1, p2], {'tx signal', 'rx signal', 'eq signal'}, 'location', 'northwest');
+save_fig('./figures/equalization_example_pmr_comp.eps');
 
 %% eye diagrams
 figure; hold all;
@@ -118,13 +141,14 @@ f = (0:N-1)/N/1e-12;
 %%
 figure;
 semilogx(f/20e9, db(10*h_eq_fft), '-', 'color', 'k', 'linewidth', 3); hold all;
-semilogx(f/20e9, db(10*ratio_fft), '--', 'color', stanford_red, 'linewidth', 3); hold all;
 
-semilogx(f/20e9, db(h4_fft), ':', 'color', new_blue, 'linewidth', 3); hold all;
+semilogx(f/20e9, db(h4_fft), '--', 'color', stanford_red, 'linewidth', 3); hold all;
+semilogx(f/20e9, db(10*ratio_fft), ':', 'color', new_blue, 'linewidth', 3); hold all;
+
 xlim([0.1, 2]);
 ylim([-40, 40]);
 set(gca, 'fontsize', 18);
-legend('Equalized', 'FFE', 'Channel', 'location', 'northwest');
+legend('Equalized', 'Channel', 'FFE', 'location', 'northwest');
 xlabel('Frequency (fbaud)', 'fontsize', 18);
 ylabel('Normalized Magnitude (dB)', 'fontsize', 18);
 save_fig('./figures/equalization_example_freq_domain.eps');
