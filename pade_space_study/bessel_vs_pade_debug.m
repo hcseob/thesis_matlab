@@ -29,16 +29,50 @@ set(gca, 'fontsize', 18);
 ylim([1, 4]);
 legend([p1, p4, p7], {'Bessel', 'Pade', 'Ideal'});
 
+
+
+%%
 A0 = create_A(3, 0);
 A1 = create_A(3, 1);
 M0 = A0^(-1)*A1;
 k = 9;
-disp(delays(k)/1e-12);
 
-disp(c_bs1(:, k));
-disp(c_pd1(:, k));
-disp(M0*c_pd1(:, k));
+load('bessel_vs_pade_debug.mat');
+pulse = p_norm.nel2;
+t = p_norm.t;
+tau = delays(k);
+c1 = c_pd1(:, k);
+c0 = M0*c1;
+c0o = c_bs1(:, k);
 
+delay_cell = pade_sys(1, tau);
+for j = 1:3
+    ps1(:, j) = lsim((delay_cell)^(j-1), pulse, t);
+end
+
+delay_cell = bessel_sys(1, tau/2);
+for j = 1:3
+    ps0(:, j) = lsim((delay_cell)^(j-1), pulse, t);
+end
+
+
+
+c1a = optim_pmr_opt(ps1, 0.5);
+c0a = optim_pmr_opt(ps0, 0.5);
+c0atten = optim_pmr_opt(ps0, 0.5/6);
+
+pmr1 = pmr_best_offset(ps1*c1);
+pmr0 = pmr_best_offset(ps0*c0);
+pmr0a = pmr_best_offset(ps0*c0a);
+pmr0atten = pmr_best_offset(ps0*c0atten);
+pmr0atten2 = pmr_best_offset(ps0*c0/6);
+
+disp([pmr1, pmr0, pmr0a, pmr0atten, pmr0atten2]);
+disp([c0/6, c0atten]);
+
+figure; hold all;
+plot(ps0*c0/6);
+plot(ps0*c0atten);
 end
 
 function [amp, pmr, c, delays] = delay_sweep(pulse, t, N, delay_type)
