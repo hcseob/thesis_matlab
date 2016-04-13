@@ -1,11 +1,6 @@
 clear all; close all; addpath('/home/rboesch/thesis/matlab/lib');
 load('/home/rboesch/thesis/data/bench/board2/allpulses20gC10_eq.mat');
 run('~/thesis/matlab/thesis.m');
-%%
-os = 3;
-figure; hold all;
-plot(pulse.t/1e-12, pulse.vod, '-k', 'linewidth', 2);
-plot(pulse.t(os:4:end)/1e-12, pulse.vod(os:4:end), 'ok', 'linewidth', 2);
 
 %%
 os = 4;
@@ -26,23 +21,9 @@ plot(pulses.t(os:4:end, 1)/1e-12, p_eq(os:4:end), 'ok', 'linewidth', 2, 'color',
 xlabel('Time (ps)', 'fontsize', 18);
 ylabel('Voltage (V)', 'fontsize', 18);
 set(gca, 'fontsize', 18);
+box on;
 xlim([100, 500]); ylim([-30e-3, 50e-3]);
 save_fig('./figures/family_meas.eps');
-
-%%
-figure; hold all;
-plot(pulses.t(:, 1)/1e-12, p_eq, '-', 'linewidth', 2, 'color', stanford_red);
-plot(pulses.t(os:4:end, 1)/1e-12, p_eq(os:4:end), 'ok', 'linewidth', 2, 'color', stanford_red);
-xlabel('Time (ps)', 'fontsize', 18);
-ylabel('Voltage (V)', 'fontsize', 18);
-set(gca, 'fontsize', 18);
-xlim([100, 500]); ylim([-30e-3, 50e-3]);
-save_fig('./figures/family_meas_just_eq.eps');
-plot(pulses.t(:, 1)/1e-12, p_ch, '-k', 'linewidth', 2);
-plot(pulses.t(os:4:end, 1)/1e-12, p_ch(os:4:end), 'ok', 'linewidth', 2);
-xlim([100, 500]); ylim([-50e-3, 200e-3]);
-save_fig('./figures/family_meas_eqandch.eps');
-
 
 %%
 figure; hold all;
@@ -53,6 +34,7 @@ plot(pulses.t(os:4:end, 1)/1e-12, p_ch(os:4:end)/max(p_ch), 'ok', 'linewidth', 2
 xlabel('Time (ps)', 'fontsize', 18);
 ylabel('Normalized Voltage', 'fontsize', 18);
 set(gca, 'fontsize', 18);
+box on;
 xlim([100, 500]); ylim([-0.3, 1.1]);
 
 save_fig('./figures/ch_eq_comp.eps');
@@ -78,11 +60,10 @@ plot(t/1e-12, prbs_ch, '-k', 'linewidth', 2);
 plot(t/1e-12, prbs_eq0, '-', 'linewidth', 2, 'color', stanford_red); hold all;
 ylim([-0.2, 0.2]);
 set(gca, 'fontsize', 18);
+box on;
 xlabel('Time (ps)', 'fontsize', 18); 
 ylabel('Voltage (V)', 'fontsize', 18);
 save_fig('./figures/dr_improvement_alldata_noscale.eps');
-xlim([0, 2000]);
-save_fig('./figures/dr_improvement_alldata_noscale_zoomed.eps');
 
 % scaled
 figure; hold all;
@@ -90,23 +71,11 @@ plot(t/1e-12, prbs_ch, '-k', 'linewidth', 2);
 plot(t/1e-12, prbs_eq0*scale, '-', 'linewidth', 2, 'color', stanford_red); hold all;
 ylim([-0.2, 0.2]);
 set(gca, 'fontsize', 18);
+box on;
 xlabel('Time (ps)', 'fontsize', 18); 
 ylabel('Voltage (V)', 'fontsize', 18);
 save_fig('./figures/dr_improvement_alldata.eps');
-xlim([0, 2000]);
-save_fig('./figures/dr_improvement_alldata_zoomed.eps');
 
-% scaled and offset
-figure; hold all;
-plot(t/1e-12, prbs_ch, '-k', 'linewidth', 2);
-plot(t/1e-12, prbs_eq, '-', 'linewidth', 2, 'color', stanford_red); hold all;
-ylim([-0.2, 0.2]);
-set(gca, 'fontsize', 18);
-xlabel('Time (ps)', 'fontsize', 18); 
-ylabel('Voltage (V)', 'fontsize', 18);
-save_fig('./figures/dr_improvement_alldata_offset.eps');
-xlim([0, 2000]);
-save_fig('./figures/dr_improvement_offset_alldata_zoomed.eps');
 
 %%
 vpp_ch = max(prbs_ch) - min(prbs_ch);
