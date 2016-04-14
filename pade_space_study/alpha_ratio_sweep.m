@@ -3,7 +3,7 @@ run('~/thesis/matlab/thesis.m');
 load('../../data/channels/channels.mat');
 
 pmr_bl = pmr_best_offset(p_norm.nel2);
-run_sweeps = true;
+run_sweeps = false;
 if run_sweeps
     N = 10;
     alphas = linspace(0, 1, N);
@@ -21,9 +21,9 @@ else
 end
 
 figure;
-plot(alphas, pmr_neq3/pmr_bl, '-k', 'linewidth', 2); hold all;
+plot(alphas, pmr_neq5/pmr_bl, '-k', 'linewidth', 2); hold all;
 plot(alphas, pmr_neq4/pmr_bl, '--', 'color', stanford_red, 'linewidth', 2); hold all;
-plot(alphas, pmr_neq5/pmr_bl, ':', 'color', new_blue, 'linewidth', 2); hold all;
+plot(alphas, pmr_neq3/pmr_bl, ':', 'color', new_blue, 'linewidth', 2); hold all;
 xlabel('Pole and Zero Ratio', 'fontsize', 18); 
 ylabel('DR Improvement', 'fontsize', 18); 
 ylim([1, 4]);
@@ -32,9 +32,9 @@ set(gca, 'fontsize', 18);
 save_fig('./figures/alpha_ratio_sweep.eps');
 
 figure;
-plot(alphas, pmr_eq3/pmr_bl, '-k', 'linewidth', 2); hold all;
+plot(alphas, pmr_eq5/pmr_bl, '-k', 'linewidth', 2); hold all;
 plot(alphas, pmr_eq4/pmr_bl, '--', 'color', stanford_red, 'linewidth', 2); hold all;
-plot(alphas, pmr_eq5/pmr_bl, ':', 'color', new_blue, 'linewidth', 2); hold all;
+plot(alphas, pmr_eq3/pmr_bl, ':', 'color', new_blue, 'linewidth', 2); hold all;
 xlabel('Pole and Zero Ratio', 'fontsize', 18); 
 ylabel('DR Improvement', 'fontsize', 18); 
 ylim([1, 4]);
@@ -45,9 +45,9 @@ save_fig('./figures/alpha_ratio_sweep_constant_tau.eps');
 plot_amps = false;
 if plot_amps
     figure;
-    plot(alphas, amp_neq3, '-k', 'linewidth', 2); hold all;
+    plot(alphas, amp_neq5, '-k', 'linewidth', 2); hold all;
     plot(alphas, amp_neq4, '--', 'color', stanford_red, 'linewidth', 2); hold all;
-    plot(alphas, amp_neq5, '-.', 'color', new_blue, 'linewidth', 2); hold all;
+    plot(alphas, amp_neq3, '-.', 'color', new_blue, 'linewidth', 2); hold all;
     xlabel('Pole/Zero Ratio', 'fontsize', 18); 
     ylabel('Attenuation', 'fontsize', 18); 
     ylim([0, 3])
