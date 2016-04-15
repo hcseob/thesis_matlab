@@ -25,7 +25,6 @@ S = transpose(M)*M;
 [V, D]= eig(S);
 sN0 = sqrt(max(real(diag(D))));
 
-
 figure;
 semilogx(alphas, sN(:, 2), '-k', 'linewidth', 2); hold all;
 semilogx(alphas, sN(:, 3), '-k', 'linewidth', 2); hold all;
@@ -35,8 +34,9 @@ text(3e-3, 3.3, 'N=2', 'fontsize', 14);
 text(3e-3, 7, 'N=3', 'fontsize', 14);
 text(3e-3, 17.5, 'N=4', 'fontsize', 14);
 text(3e-3, 46.5, 'N=5', 'fontsize', 14);
-set(gca, 'fontsize', 14);
-xlabel('alpha', 'fontsize', 14);
-ylabel('sN', 'fontsize', 14);
+set(gca, 'fontsize', 18);
+xlim([1e-3, 10])
+xlabel('alpha', 'fontsize', 18);
+ylabel('sN', 'fontsize', 18);
 save_fig('./figures/spectral_norm_versus_alpha.eps');
 end
