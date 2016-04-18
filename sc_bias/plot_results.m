@@ -56,8 +56,8 @@ vomg_fit = [vomg_fit(1:10), vomg_fit(12:end)];
 vopg_fit = [vopg_fit(1:10), vopg_fit(12:end)];
 
 figure; hold all;
-plot(vomg_fit, vopg_fit, '--',  'color', stanford_red, 'linewidth', 2);
-plot(vomcm, vopcm_fit, ':', 'color', new_blue, 'linewidth', 2);
+plot(vomg_fit, vopg_fit, '--',  'color', stanford_red, 'linewidth', 3);
+plot(vomcm, vopcm_fit, ':', 'color', new_blue, 'linewidth', 3);
 plot(vom_scatter+0.05, vop_scatter-0.03, '.k');
 % plot(vom_ideal+0.054, vop_ideal-0.016, 'o', 'color', stanford_red, 'linewidth', 2, 'markerfacecolor', stanford_red, 'markersize', 6);
 
