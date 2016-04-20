@@ -34,18 +34,19 @@ eq_prbs = eq_prbs - (max(eq_prbs)+min(eq_prbs))/2;
 
 t = t/1e-9;
 figure; hold all;
-plot(t, ch_prbs, '-k', 'linewidth', 3);
+p1 = plot(t, ch_prbs, '-k', 'linewidth', 3);
 plot([t(1), t(end)], max(ch_prbs)*[1, 1], '--k', 'linewidth', 1);
 plot([t(1), t(end)], min(ch_prbs)*[1, 1], '--k', 'linewidth', 1);
 
-plot(t, eq_prbs, '-', 'linewidth', 3, 'color', stanford_red);
+p2 = plot(t, eq_prbs, '-', 'linewidth', 3, 'color', stanford_red);
 plot([t(1), t(end)], max(eq_prbs)*[1, 1], '--', 'linewidth', 1, 'color', stanford_red);
 plot([t(1), t(end)], min(eq_prbs)*[1, 1], '--', 'linewidth', 1, 'color', stanford_red);
 xlim([0, 8]);
 ylim([-6, 6]);
-xlabel('Time [ns]', 'fontsize', 18);
+xlabel('Time (ns)', 'fontsize', 18);
 ylabel('Normalized PRBS', 'fontsize', 18);
 set(gca, 'fontsize', 18);
+legend([p1, p2], {'Channel', 'Equalized'});
 box on;
 save_fig('./figures/prbs_from_pulse.eps');
 

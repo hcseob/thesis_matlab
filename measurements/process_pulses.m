@@ -93,11 +93,11 @@ prbs_eq_norm = prbs_eq0/max(prbs_eq0)*pmr_eq;
 
 % scaled
 figure; hold all;
-plot(t/1e-9, prbs_ch_norm, '-k', 'linewidth', 2);
+p1 = plot(t/1e-9, prbs_ch_norm, '-k', 'linewidth', 2);
 plot([t(1), t(end)]/1e-9, max(prbs_ch_norm)*[1, 1], '--k', 'linewidth', 1);
 plot([t(1), t(end)]/1e-9, min(prbs_ch_norm)*[1, 1], '--k', 'linewidth', 1);
 
-plot(t/1e-9, prbs_eq_norm, '-', 'linewidth', 2, 'color', stanford_red); hold all;
+p2 = plot(t/1e-9, prbs_eq_norm, '-', 'linewidth', 2, 'color', stanford_red); hold all;
 plot([t(1), t(end)]/1e-9, max(prbs_eq_norm)*[1, 1], '--', 'linewidth', 1, 'color', stanford_red);
 plot([t(1), t(end)]/1e-9, min(prbs_eq_norm)*[1, 1], '--', 'linewidth', 1, 'color', stanford_red);
 xlim([0, 12]);
@@ -106,4 +106,5 @@ set(gca, 'fontsize', 18);
 box on;
 xlabel('Time (ns)', 'fontsize', 18); 
 ylabel('Normalized Voltage', 'fontsize', 18);
+legend([p1, p2], {'Channel', 'Equalized'});
 save_fig('./figures/prbs_normalized_voltage.eps');
