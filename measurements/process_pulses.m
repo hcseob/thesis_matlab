@@ -27,14 +27,15 @@ save_fig('./figures/family_meas.eps');
 
 %%
 figure; hold all;
-plot(pulses.t(:, 1)/1e-12, p_eq/max(p_eq), '-', 'linewidth', 3, 'color', stanford_red);
+p1 = plot(pulses.t(:, 1)/1e-12, p_eq/max(p_eq), '-', 'linewidth', 3, 'color', stanford_red);
 plot(pulses.t(os:4:end, 1)/1e-12, p_eq(os:4:end)/max(p_eq), 'ok', 'linewidth', 2, 'color', stanford_red, 'markerfacecolor', stanford_red, 'markersize', 8);
-plot(pulses.t(:, 1)/1e-12, p_ch/max(p_ch), '-k', 'linewidth', 3);
+p2 = plot(pulses.t(:, 1)/1e-12, p_ch/max(p_ch), '-k', 'linewidth', 3);
 plot(pulses.t(os:4:end, 1)/1e-12, p_ch(os:4:end)/max(p_ch), 'ok', 'linewidth', 2, 'markerfacecolor', 'k', 'markersize', 8);
 xlabel('Time (ps)', 'fontsize', 18);
 ylabel('Normalized Voltage', 'fontsize', 18);
 set(gca, 'fontsize', 18);
 box on;
+legend([p2, p1], {'Channel', 'Equalized'});
 xlim([100, 500]); ylim([-0.3, 1.1]);
 
 save_fig('./figures/ch_eq_comp.eps');
