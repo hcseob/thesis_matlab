@@ -52,17 +52,18 @@ end
 
 %%
 figure;
-p1 = semilogx(powers/1e-3, 10*log10(sdr_sinusoid_sv), '-k', 'linewidth', 2); hold all;
+p1 = semilogx(powers/1e-3, 10*log10(sdr_sinusoid_sv), '-k', 'linewidth', 3); hold all;
 semilogx([powers(5)/1e-3/10, powers(5)/1e-3], (10*log10(sdr_sinusoid_sv(5))+[20,0]), '--k', 'linewidth', 2);
-p2 = semilogx(powers/1e-3, 10*log10(sdr_prbs_sv), '-', 'linewidth', 2, 'color', stanford_red); hold all;
+p2 = semilogx(powers/1e-3, 10*log10(sdr_prbs_sv), '-', 'linewidth', 3, 'color', stanford_red); hold all;
 semilogx([powers(5)/1e-3/10, powers(5)/1e-3], (10*log10(sdr_prbs_sv(5))+[20,0]), '--', 'linewidth', 2, 'color', stanford_red);
-plot(powers(5)/1e-3, 34.8, 'o', 'linewidth', 2, 'color', stanford_red);
-grid on;
+plot(powers(5)/1e-3, 34.8, 'o', 'linewidth', 2, 'color', stanford_red, 'markerfacecolor', stanford_red, 'markersize', 8);
+% grid on;
 set(gca, 'fontsize', 18);
 xlabel('Input Signal Variance', 'fontsize', 18);
 ylabel('SDR', 'fontsize', 18);
-% legend([p1, p2], {'Sinusoid', 'PRBS'});
-xlim([1, 10])
+legend([p1, p2], {'Sinusoid', 'PRBS'});
+xlim([1, 10]);
+box on;
 save_fig('./figures/sine_prbs_compare.eps');
 %%
 k = 5; n = 5;
