@@ -46,7 +46,7 @@ ylim([-6, 6]);
 xlabel('Time [ns]', 'fontsize', 18);
 ylabel('Normalized PRBS', 'fontsize', 18);
 set(gca, 'fontsize', 18);
-
+box on;
 save_fig('./figures/prbs_from_pulse.eps');
 
 pmr_improvement = (max(ch_prbs) - min(ch_prbs))/(max(eq_prbs) - min(eq_prbs))
