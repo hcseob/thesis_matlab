@@ -105,7 +105,7 @@ ylabel('Noise (mVRMS)', 'fontsize', 18);
 set(gca, 'fontsize', 18);
 xlim([1, 31]);
 ylim([0, 1.0]);
-grid on;
+% grid on;
 box on;
 legend('Simulation', 'Measurement', 'location', 'northwest');
 save_fig('./figures/vn_rms.eps');
