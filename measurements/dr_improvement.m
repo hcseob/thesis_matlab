@@ -31,4 +31,4 @@ ylabel('Normalized Pulse', 'fontsize', 18);
 legend([p1, p2], {'Channel', 'Equalized'});
 set(gca, 'fontsize', 18);
 box on;
-save_fig('./figures/bench_chandeq_singleended.eps');
+save_fig('./figures/dr_improvement.eps');
