@@ -6,7 +6,7 @@ eq_ben = pulse_from_h5([path_ben, 'pulse20in_eq.h5'], L);
 c1_ben = pulse_from_h5([path_ben, 'pulse20in_c1.h5'], L);
 
 % figure; hold all;
-% offset = 3000;
+offset = 3000;
 % p1 = plot(c1_ben.t/1e-12 - offset, c1_ben.p_norm, '-', 'linewidth', 2, 'color', 'k');
 % plot(c1_ben.t_baud/1e-12 - offset, c1_ben.p_baud, 'o', 'linewidth', 2, 'color', 'k');
 % xlim([0, 1500]);
@@ -35,17 +35,17 @@ eq_prbs = eq_prbs - (max(eq_prbs)+min(eq_prbs))/2;
 t = t/1e-9;
 figure; hold all;
 plot(t, ch_prbs, '-k', 'linewidth', 3);
-plot([t(1), t(end)], max(ch_prbs)*[1, 1], '--k', 'linewidth', 3);
-plot([t(1), t(end)], min(ch_prbs)*[1, 1], '--k', 'linewidth', 3);
+plot([t(1), t(end)], max(ch_prbs)*[1, 1], '--k', 'linewidth', 1);
+plot([t(1), t(end)], min(ch_prbs)*[1, 1], '--k', 'linewidth', 1);
 
 plot(t, eq_prbs, '-', 'linewidth', 3, 'color', stanford_red);
-plot([t(1), t(end)], max(eq_prbs)*[1, 1], '--', 'linewidth', 3, 'color', stanford_red);
-plot([t(1), t(end)], min(eq_prbs)*[1, 1], '--', 'linewidth', 3, 'color', stanford_red);
+plot([t(1), t(end)], max(eq_prbs)*[1, 1], '--', 'linewidth', 1, 'color', stanford_red);
+plot([t(1), t(end)], min(eq_prbs)*[1, 1], '--', 'linewidth', 1, 'color', stanford_red);
 xlim([0, 8]);
 ylim([-6, 6]);
 xlabel('Time [ns]', 'fontsize', 18);
 ylabel('Normalized PRBS', 'fontsize', 18);
-set(gca, 'fontsize', 14);
+set(gca, 'fontsize', 18);
 
 save_fig('./figures/prbs_from_pulse.eps');
 

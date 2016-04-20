@@ -96,10 +96,10 @@ BW = 8e9;
 BW_scope = 33e9;
 figure; hold all;
 
-plot(coeffs_sim, vn_sim_10G/1e-3, '-k', 'linewidth', 2);
+plot(coeffs_sim, vn_sim_10G/1e-3, '-k', 'linewidth', 3);
 % plot(coeffs_sim, vn_sim_8G/1e-3, '-k', 'linewidth', 2);
 % plot(coeffs_sim, vn_sim_6G/1e-3, '--k', 'linewidth', 2);
-plot(0:31, sqrt(20e9)*sqrt(vn.^2-vn_bl.^2)/1e-3, '-', 'linewidth', 2, 'color', stanford_red);
+plot(0:31, sqrt(20e9)*sqrt(vn.^2-vn_bl.^2)/1e-3, '-', 'linewidth', 3, 'color', stanford_red);
 xlabel('Coeffs Value', 'fontsize', 18);
 ylabel('Noise (mVRMS)', 'fontsize', 18);
 set(gca, 'fontsize', 18);
