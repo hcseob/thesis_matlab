@@ -82,11 +82,13 @@ plot(t_imp(os:40:end)/1e-12, h_eq10(os:40:end), 'ok', 'linewidth', 2);
 ratio = max(h_eq10)/max(h_eqsim);
 p2 = plot(t_imp/1e-12, h_eqsim*ratio, '-', 'linewidth', 2, 'color', stanford_red);
 plot(t_imp(os_sim:40:end)/1e-12, h_eqsim(os_sim:40:end)*ratio, 'o', 'linewidth', 2, 'color', stanford_red);
-xlabel('Time [ps]', 'fontsize', 18);
+xlabel('Time (ps)', 'fontsize', 18);
 ylabel('Impulse Response', 'fontsize', 18);
-xlim([0, t_imp(end)/10/1e-12]);
+xlim([0, 500]);
+ylim([-5e-3, 20e-3]);
 legend([p1, p2], {'Bench', 'Simulated'});
-set(gca, 'fontsize', 14);
+set(gca, 'fontsize', 18);
+box on;
 save_fig('./figures/impresp_eq.eps');
 
 %% channel
@@ -97,24 +99,14 @@ plot(t_imp(os:40:end)/1e-12, h_ch(os:40:end), 'ok', 'linewidth', 2);
 ratio = max(h_ch)/max(h_chsim);
 p2 = plot(t_imp/1e-12, h_chsim*ratio, '-', 'linewidth', 2, 'color', stanford_red);
 plot(t_imp(os_sim:40:end)/1e-12, h_chsim(os_sim:40:end)*ratio, 'o', 'linewidth', 2, 'color', stanford_red);
-xlabel('Time [ps]', 'fontsize', 18);
+xlabel('Time (ps)', 'fontsize', 18);
 ylabel('Impulse Response', 'fontsize', 18);
-xlim([0, t_imp(end)/10/1e-12]);
+xlim([0, 500]);
+ylim([-5e-3, 20e-3]);
 legend([p1, p2], {'Bench', 'Simulated'});
 set(gca, 'fontsize', 18);
+box on;
 save_fig('./figures/impresp_ch.eps');
-
-%% prbs
-% figure; hold all;
-% p1 = plot(t_imp/1e-12, h_prbs, '-k');
-% ratio = max(h_ch)/max(h_chsim);
-% xlabel('Time [ps]');
-% ylabel('Impulse Response');
-% xlim([0, t_imp(end)/10/1e-12]);
-% legend('Bench');
-% % print('-dpng', './figures/impresp_prbs');
-% xlim([0, t_imp(end)/1e-12]);
-% % print('-dpng', './figures/impresp_prbs_full');
 
 %% frequency responses
 N = length(h_eq10);
@@ -129,10 +121,9 @@ semilogx(f/1e9, db(h_eq10_fft/h_eq10_fft(2)), '-k', 'linewidth', 2); hold all;
 semilogx(f/1e9, db(h_ch_fft/h_ch_fft(2)), '-', 'linewidth', 2, 'color', stanford_red);
 xlim([0, 30]);
 ylim([-40, 10]);
-grid on;
-xlabel('Frequency [GHz]', 'fontsize', 18);
-ylabel('Magnitude [dB]', 'fontsize', 18);
-set(gca, 'fontsize', 14');
+xlabel('Frequency (GHz)', 'fontsize', 18);
+ylabel('Magnitude (dB)', 'fontsize', 18);
+set(gca, 'fontsize', 18');
 legend('Equalized', 'Channel');
 save_fig('./figures/freqresp_ben.eps');
 
@@ -144,9 +135,8 @@ semilogx(f/1e9, db(h_eqsim_fft/h_eqsim_fft(2)), '-k', 'linewidth', 2); hold all;
 semilogx(f/1e9, db(h_chsim_fft/h_chsim_fft(2)), '-', 'linewidth', 2, 'color', stanford_red);
 xlim([0, 30]);
 ylim([-40, 10]);
-grid on;
-xlabel('Frequency [GHz]', 'fontsize', 18);
-ylabel('Magnitude [dB]', 'fontsize', 18);
-set(gca, 'fontsize', 14');
+xlabel('Frequency (GHz)', 'fontsize', 18);
+ylabel('Magnitude (dB)', 'fontsize', 18);
+set(gca, 'fontsize', 18');
 legend('Equalized', 'Channel');
 save_fig('./figures/freqresp_sim.eps');

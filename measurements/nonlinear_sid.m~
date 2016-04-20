@@ -84,9 +84,11 @@ p2 = plot(t_imp/1e-12, h_eqsim*ratio, '-', 'linewidth', 2, 'color', stanford_red
 plot(t_imp(os_sim:40:end)/1e-12, h_eqsim(os_sim:40:end)*ratio, 'o', 'linewidth', 2, 'color', stanford_red);
 xlabel('Time (ps)', 'fontsize', 18);
 ylabel('Impulse Response', 'fontsize', 18);
-xlim([0, t_imp(end)/10/1e-12]);
+xlim([0, 500]);
+ylim([-5e-3, 20e-3]);
 legend([p1, p2], {'Bench', 'Simulated'});
 set(gca, 'fontsize', 18);
+box on;
 save_fig('./figures/impresp_eq.eps');
 
 %% channel
@@ -99,10 +101,11 @@ p2 = plot(t_imp/1e-12, h_chsim*ratio, '-', 'linewidth', 2, 'color', stanford_red
 plot(t_imp(os_sim:40:end)/1e-12, h_chsim(os_sim:40:end)*ratio, 'o', 'linewidth', 2, 'color', stanford_red);
 xlabel('Time (ps)', 'fontsize', 18);
 ylabel('Impulse Response', 'fontsize', 18);
-xlim([0, t_imp(end)/10/1e-12]);
+xlim([0, 500]);
 ylim([-5e-3, 20e-3]);
 legend([p1, p2], {'Bench', 'Simulated'});
 set(gca, 'fontsize', 18);
+box on;
 save_fig('./figures/impresp_ch.eps');
 
 %% frequency responses
