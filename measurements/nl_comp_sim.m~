@@ -61,7 +61,7 @@ plot(powers(5), 34.8, 'o', 'linewidth', 2, 'color', stanford_red, 'markerfacecol
 set(gca, 'fontsize', 18);
 xlabel('Input Signal Variance', 'fontsize', 18);
 ylabel('SDR', 'fontsize', 18);
-legend([p1, p2], {'Sinusoid', 'PRBS'});
+legend([p1, p2], {'Sine Simulation', 'PRBS Simulation', 'PRBS Measured'});
 xlim([1e-3, 10e-3]);
 box on;
 save_fig('./figures/sine_prbs_compare.eps');
