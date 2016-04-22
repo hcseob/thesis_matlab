@@ -83,8 +83,6 @@ save_fig('./figures/dr_improvement_alldata.eps');
 %%
 vpp_ch = max(prbs_ch) - min(prbs_ch);
 vpp_eq = max(prbs_eq) - min(prbs_eq);
-vpp_ch/vpp_eq
-db(vpp_ch/vpp_eq)
 
 %%
 scale = vpp_ch/vpp_eq;
@@ -92,6 +90,11 @@ pmr_eq = sum(abs(p_eq(os:4:end)/max(p_eq)));
 prbs_ch_norm = prbs_ch/max(prbs_ch)*pmr_eq*scale;
 prbs_eq_norm = prbs_eq0/max(prbs_eq0)*pmr_eq;
 
+max(prbs_ch_norm)/max(prbs_eq_norm)
+db(max(prbs_ch_norm)/max(prbs_eq_norm))
+[max(prbs_ch_norm), max(prbs_eq_norm)]
+
+%%
 % scaled
 figure; hold all;
 p1 = plot(t/1e-9, prbs_ch_norm, '-k', 'linewidth', 2);
