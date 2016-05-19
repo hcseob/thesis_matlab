@@ -56,12 +56,12 @@ p1 = semilogx(powers, 10*log10(sdr_sinusoid_sv), '-k', 'linewidth', 3); hold all
 semilogx([powers(5)/10, powers(5)], (10*log10(sdr_sinusoid_sv(5))+[20,0]), '--k', 'linewidth', 2);
 p2 = semilogx(powers, 10*log10(sdr_prbs_sv), '-', 'linewidth', 3, 'color', stanford_red); hold all;
 semilogx([powers(5)/10, powers(5)], (10*log10(sdr_prbs_sv(5))+[20,0]), '--', 'linewidth', 2, 'color', stanford_red);
-plot(powers(5), 34.8, 'o', 'linewidth', 2, 'color', stanford_red, 'markerfacecolor', stanford_red, 'markersize', 8);
+p3 = plot(powers(5), 34.8, 'o', 'linewidth', 2, 'color', stanford_red, 'markerfacecolor', stanford_red, 'markersize', 8);
 % grid on;
 set(gca, 'fontsize', 18);
 xlabel('Input Signal Variance', 'fontsize', 18);
 ylabel('SDR', 'fontsize', 18);
-legend([p1, p2], {'Sinusoid', 'PRBS'});
+legend([p1, p2, p3], {'Sine Simulation', 'PRBS Simulation', 'PRBS Measured'});
 xlim([1e-3, 10e-3]);
 box on;
 save_fig('./figures/sine_prbs_compare.eps');
@@ -78,6 +78,12 @@ ap = mean(xp.*yp)/mean(xp.^2);
 dp = var(yp-ap*xp);
 
 disp(10*log10(dp/ds));
+
+%%
+x = xs/max(xs);
+y = x.^3;
+a = mean(x.*y)/mean(x.^2);
+var(y-a*x)
 
 %%
 sine_in = vidi(:, 5);

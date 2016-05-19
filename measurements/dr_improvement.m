@@ -32,3 +32,24 @@ legend([p1, p2], {'Channel', 'Equalized'});
 set(gca, 'fontsize', 18);
 box on;
 save_fig('./figures/dr_improvement.eps');
+
+
+%%
+p_ch = c1_ben.p_baud(61:80);
+p_eq = eq_ben.p_baud(61:80);
+
+figure; hold all;
+plot(p_eq, '-ok');
+plot(p_ch, '-or');
+
+[sum(abs(p_eq)), sum(abs(p_ch)), sum(abs(p_ch))/sum(abs(p_eq))]
+
+%%
+p_ch_unnorm = c1_ben.p - c1_ben.p(1);
+p_eq_unnorm = eq_ben.p - eq_ben.p(1);
+
+figure; hold all;
+plot(p_ch_unnorm); 
+plot(p_eq_unnorm);
+
+2*max(p_ch_unnorm)/max(p_eq_unnorm)
