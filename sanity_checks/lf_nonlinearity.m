@@ -44,7 +44,7 @@ IO_plot = fft(io_plot)/(N);
 
 IO_db = db(IO_plot);
 plot(0:N-1, IO_db, '-ok', 'linewidth', 3, 'markerfacecolor', 'k', 'markersize', 6);
-xlim([0, 70]);
+xlim([0, 75]);
 ylim([-180, 10]);
 
 text(3, IO_db(2), 'g10', 'fontsize', 18);

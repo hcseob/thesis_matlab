@@ -21,7 +21,8 @@ while any(noncorrected_f_fft > threshold)
     k = round((min_ind_actual-1)/ky);
     j = abs(round((min_ind_actual-1 - k*ky)/kx));
     xjyk_fft = fft(x.^j.*y.^k);
-    gtrans(j+1, k+1) = real(xjyk_fft(min_ind_actual)'*f_fft(min_ind_actual))/abs(xjyk_fft(min_ind_actual))^2;
+    gtrans(j+1, k+1) = real(xjyk_fft(min_ind_actual)' ...
+       *f_fft(min_ind_actual))/abs(xjyk_fft(min_ind_actual))^2;
     
     noncorrected_f_fft = abs(f_fft(find(not_corrected)));
 end
