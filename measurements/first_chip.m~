@@ -1,0 +1,57 @@
+clear all; close all; run('~/thesis/matlab/thesis.m'); addpath('./lib');
+addpath('~/MATLAB/FFE/SID/functions');
+
+%% Measured
+load('~/thesis/data/first_chip/data/20150115/BOARD0.mat');
+
+delays(:,1) = [12e-12,18e-12,6e-12,17e-12,0,0];
+
+baudind = 4; boardind = 1;
+period = 50e-12;
+[prbs, t, prbs_s] = getBenchTran(COEFF,TIME,6,baudind); 
+figure;
+[rise, fall] = plotEyeDiagram(t/1e-12,prbs,period/1e-12,delays(baudind,boardind)/1e-12);
+plot([0,0.1/rise],[0,0.1],'--b','linewidth',2); hold all;
+plot([period/1e-12+0.1/fall, period/1e-12],[0.1,0],'--b','linewidth',2); hold all;
+xlim([0,period/1e-12]);
+ylim([-150e-3,150e-3]);
+xlabel('Time [ps]');
+ylabel('Voltage [V]');
+
+%% Pessimistic Simulation
+load('~/thesis/data/first_chip/data/CadenceSimulations/trantran_SignalPath1FFEs_PRBS7_R1eq10R12eqR13eq20.mat');
+
+    figure;
+    [prbs_afs, t_afs] = getSimTran(trantran, 1, 'VOP3', 'VOM3');
+    plotEyeDiagram(t_afs/1e-12, -prbs_afs, 50, -5);
+
+    xlim([0,50]);
+    ylim([-150e-3,150e-3]);
+    xlabel('Time [ps]');
+    ylabel('Voltage [V]');
+end
+
+%% Realistic Simulation
+load('~/thesis/data/first_chip/data/CadenceSimulations/trantran_SignalPath1FFEs_PRBS7_NewPDK.mat');
+
+figure;
+[prbs_afs, t_afs] = getSimTran(trantran, 1, 'VOP3', 'VOM3');
+[rise,fall] = plotEyeDiagram(t_afs/1e-12, prbs_afs, 50, 31);
+xlim([0,50]);
+ylim([-150e-3,150e-3]);
+xlabel('Time [ps]');
+ylabel('Voltage [V]');
+
+%% overlap plot
+load('~/thesis/data/first_chip/data/CadenceSimulations/trantran_SignalPath1FFEs_PRBS7_R1eq10R12eqR13eq20.mat');
+[prbs_r, t_r] = getSimTran(trantran, 1, 'VOP3', 'VOM3');
+load('~/thesis/data/first_chip/data/CadenceSimulations/trantran_SignalPath1FFEs_PRBS7_NewPDK.mat');
+[prbs_p, t_p] = getSimTran(trantran, 1, 'VOP3', 'VOM3');
+
+figure;
+plotEyeDiagram(t_r/1e-12, -prbs_r, 50, -5);
+plotEyeDiagram(t_p/1e-12, prbs_p/1.4, 50, 31, '-r');
+xlim([0,50]);
+ylim([-150e-3,150e-3]);
+xlabel('Time [ps]');
+ylabel('Voltage [V]');
