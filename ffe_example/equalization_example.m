@@ -47,7 +47,7 @@ ylim([-1.1, 1.1]);
 box on;
 legend([p_summed, p_eq], {'Summed Pulses', 'Equalized Pulse'});
 
-text(1, -0.28, 'p1', 'fontsize', 18);
+text(1, -0.23, 'p1', 'fontsize', 18);
 text(1.15, 0.6, 'p2', 'fontsize', 18);
 text(4.5, -0.5, 'p3', 'fontsize', 18);
 text(3, 0.34, 'p4', 'fontsize', 18);
