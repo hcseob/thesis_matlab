@@ -44,15 +44,15 @@ c_pade1a = brute_force_pmr_opt(ps_pade1a, bits, amp_lim);
 %%
 figure; hold all;
 plot(t/1e-12, pulse, '-k', 'linewidth', 1);
-plot(t(12:50:end)/1e-12, pulse(12:50:end), 'ok', 'linewidth', 2, 'markersize', 6, 'markerfacecolor', 'k');
+plot(t(12:50:end)/1e-12, pulse(12:50:end), 'ok', 'linewidth', 3, 'markersize', 8, 'markerfacecolor', 'k');
 
 
-p1 = plot(t/1e-12, p_bessel1, '-k', 'linewidth', 2);
-plot(t(18:50:end)/1e-12, p_bessel1(18:50:end), 'ok', 'linewidth', 2, 'markersize', 8, 'markerfacecolor', 'k');
-p2 = plot(t/1e-12, p_pade1a, '--', 'linewidth', 2, 'color', stanford_red);
-plot(t(18:50:end)/1e-12, p_pade1a(18:50:end), 'o', 'color', stanford_red, 'linewidth', 2, 'markersize', 8, 'markerfacecolor', stanford_red);
-p3 = plot(t/1e-12, p_pade1, ':', 'linewidth', 2, 'color', new_blue);
-plot(t(24:50:end)/1e-12, p_pade1(24:50:end), 'o', 'color', new_blue, 'linewidth', 2, 'markersize', 8, 'markerfacecolor', new_blue);
+p1 = plot(t/1e-12, p_bessel1, '-k', 'linewidth', 3);
+plot(t(18:50:end)/1e-12, p_bessel1(18:50:end), 'ok', 'linewidth', 3, 'markersize', 8, 'markerfacecolor', 'k');
+p2 = plot(t/1e-12, p_pade1a, '--', 'linewidth', 3, 'color', stanford_red);
+plot(t(18:50:end)/1e-12, p_pade1a(18:50:end), 'o', 'color', stanford_red, 'linewidth', 3, 'markersize', 8, 'markerfacecolor', stanford_red);
+p3 = plot(t/1e-12, p_pade1, ':', 'linewidth', 3, 'color', new_blue);
+plot(t(24:50:end)/1e-12, p_pade1(24:50:end), 'o', 'color', new_blue, 'linewidth', 3, 'markersize', 8, 'markerfacecolor', new_blue);
 xlim([0, 400]);
 ylim([-0.2, 1.2]);
 box on;
@@ -126,9 +126,9 @@ w = 2*pi*f;
 
 figure;
 subplot(211);
-semilogx(f/1e9, db(squeeze(g_pd)), '-k', 'linewidth', 2); hold all;
-semilogx(f/1e9, db(squeeze(g_bs)), '--', 'linewidth', 2, 'color', stanford_red);
-semilogx(f/1e9, db(squeeze(g_pda)), ':', 'linewidth', 2, 'color', new_blue);
+semilogx(f/1e9, db(squeeze(g_pd)), '-k', 'linewidth', 3); hold all;
+semilogx(f/1e9, db(squeeze(g_bs)), '--', 'linewidth', 3, 'color', stanford_red);
+semilogx(f/1e9, db(squeeze(g_pda)), ':', 'linewidth', 3, 'color', new_blue);
 xlim([0.1, 1000]);
 ylim([-20, 10]);
 xlabel('Frequency (GHz)', 'fontsize', font_size_label)
@@ -136,9 +136,9 @@ ylabel('Magnitude (dB)', 'fontsize', font_size_label);
 set(gca, 'fontsize', font_size);
 
 subplot(212);
-semilogx(f/1e9, squeeze(p_pd)-360, '-k', 'linewidth', 2); hold all;
-semilogx(f/1e9, squeeze(p_bs)-360, '--', 'linewidth', 2, 'color', stanford_red);
-semilogx(f/1e9, squeeze(p_pda)-360, ':', 'linewidth', 2, 'color', new_blue);
+semilogx(f/1e9, squeeze(p_pd)-360, '-k', 'linewidth', 3); hold all;
+semilogx(f/1e9, squeeze(p_bs)-360, '--', 'linewidth', 3, 'color', stanford_red);
+semilogx(f/1e9, squeeze(p_pda)-360, ':', 'linewidth', 3, 'color', new_blue);
 xlim([0.1, 1000]);
 ylim([-300, 100]);
 legend('a = 0', 'a = 1/3', 'a = 1', 'location', 'southwest'); 
@@ -149,9 +149,9 @@ save_fig('./figures/pade1_bessel1_equiv_equal.eps');
 
 figure;
 subplot(211);
-semilogx(f/1e9, db(squeeze(g_pd)), '-k', 'linewidth', 2); hold all;
-semilogx(f/1e9, db(squeeze(g_bs_opt)), '--', 'linewidth', 2, 'color', stanford_red);
-semilogx(f/1e9, db(squeeze(g_pda_opt)), ':', 'linewidth', 2, 'color', new_blue);
+semilogx(f/1e9, db(squeeze(g_pd)), '-k', 'linewidth', 3); hold all;
+semilogx(f/1e9, db(squeeze(g_bs_opt)), '--', 'linewidth', 3, 'color', stanford_red);
+semilogx(f/1e9, db(squeeze(g_pda_opt)), ':', 'linewidth', 3, 'color', new_blue);
 xlim([0.1, 1000]);
 ylim([-20, 10]);
 xlabel('Frequency (GHz)', 'fontsize', font_size_label)
@@ -159,9 +159,9 @@ ylabel('Magnitude (dB)', 'fontsize', font_size_label);
 set(gca, 'fontsize', font_size);
 
 subplot(212);
-semilogx(f/1e9, squeeze(p_pd)-360, '-k', 'linewidth', 2); hold all;
-semilogx(f/1e9, squeeze(p_bs_opt), '--', 'linewidth', 2, 'color', stanford_red);
-semilogx(f/1e9, squeeze(p_pda_opt), ':', 'linewidth', 2, 'color', new_blue);
+semilogx(f/1e9, squeeze(p_pd)-360, '-k', 'linewidth', 3); hold all;
+semilogx(f/1e9, squeeze(p_bs_opt), '--', 'linewidth', 3, 'color', stanford_red);
+semilogx(f/1e9, squeeze(p_pda_opt), ':', 'linewidth', 3, 'color', new_blue);
 xlim([0.1, 1000]);
 ylim([-300, 100]);
 legend('a = 0', 'a = 1/3', 'a = 1', 'location', 'southwest'); 
