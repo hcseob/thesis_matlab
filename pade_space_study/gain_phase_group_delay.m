@@ -34,7 +34,7 @@ semilogx(w_gd/2/pi/1e9, gd2/1e-12, '--', 'linewidth', 2, 'color', stanford_red);
 semilogx(w_gd/2/pi/1e9, gd3/1e-12, ':', 'linewidth', 2, 'color', new_blue);
 semilogx(w_gd/2/pi/1e9, gdid/1e-12, '--k'); hold all;
 ylim([0, 30]);
-legend('N = 1', 'N = 2', 'N = 3', 'location', 'southwest');
+legend('N = 1', 'N = 2', 'N = 3', 'Ideal', 'location', 'southwest');
 set(gca, 'fontsize', font_size);
 xlabel('Frequency (GHz)', 'fontsize', font_size_label);
 ylabel('Group Delay (ps)', 'fontsize', font_size_label)
@@ -57,7 +57,7 @@ semilogx(f/1e9, p2*180/pi, '--', 'linewidth', 2, 'color', stanford_red); hold al
 semilogx(f/1e9, p3*180/pi, ':', 'linewidth', 2, 'color', new_blue); hold all;
 semilogx(f/1e9, pid*180/pi, '--k'); hold all;
 ylim([-360, 100]);
-legend('N = 1', 'N = 2', 'N = 3', 'location', 'southwest');
+legend('N = 1', 'N = 2', 'N = 3', 'Ideal', 'location', 'southwest');
 set(gca, 'fontsize', font_size);
 xlabel('Frequency (GHz)', 'fontsize', font_size_label);
 ylabel('Phase (Degrees)', 'fontsize', font_size_label);
@@ -88,7 +88,7 @@ semilogx(w_gd/2/pi/1e9, gd3/1e-12, ':', 'linewidth', 2, 'color', new_blue);
 semilogx(w_gd/2/pi/1e9, gdid/1e-12, '--k'); hold all;
 ylim([0, 30]);
 set(gca, 'fontsize', font_size);
-legend('N = 1', 'N = 2', 'N = 3', 'location', 'southwest');
+legend('N = 1', 'N = 2', 'N = 3', 'Ideal', 'location', 'southwest');
 xlabel('Frequency (GHz)', 'fontsize', font_size_label);
 ylabel('Group Delay (ps)', 'fontsize', font_size_label)
 save_fig('./figures/group_delay_pade.eps');
@@ -109,7 +109,7 @@ semilogx(f/1e9, p1*180/pi-360, '-k', 'linewidth', 2); hold all;
 semilogx(f/1e9, p2*180/pi-360, '--', 'linewidth', 2, 'color', stanford_red); hold all;
 semilogx(f/1e9, p3*180/pi-720, ':', 'linewidth', 2, 'color', new_blue); hold all;
 semilogx(f/1e9, pid*180/pi, '--k'); hold all;
-legend('N = 1', 'N = 2', 'N = 3', 'location', 'southwest');
+legend('N = 1', 'N = 2', 'N = 3', 'Ideal', 'location', 'southwest');
 ylim([-360, 100]);
 set(gca, 'fontsize', font_size);
 xlabel('Frequency (GHz)', 'fontsize', font_size_label);
@@ -148,7 +148,7 @@ semilogx(wlc_gd/2/pi/1e9, gd2/1e-12, '--', 'linewidth', 2, 'color', stanford_red
 semilogx(wlc_gd/2/pi/1e9, gd3/1e-12, ':', 'linewidth', 2, 'color', new_blue);
 semilogx(w_gd/2/pi/1e9, gdid/1e-12, '--k'); hold all;
 ylim([0, 50]);
-legend('N = 1', 'N = 2', 'N = 3', 'location', 'southwest');
+legend('N = 1', 'N = 2', 'N = 3', 'Ideal', 'location', 'southwest');
 set(gca, 'fontsize', font_size);
 xlabel('Frequency (GHz)', 'fontsize', font_size_label);
 ylabel('Group Delay (ps)', 'fontsize', font_size_label);
@@ -171,7 +171,7 @@ semilogx(flc/1e9, p2*180/pi, '--', 'linewidth', 2, 'color', stanford_red); hold 
 semilogx(flc/1e9, p3*180/pi, ':', 'linewidth', 2, 'color', new_blue); hold all;
 semilogx(f/1e9, pid*180/pi, '--k'); hold all;
 ylim([-360, 100]);
-legend('N = 1', 'N = 2', 'N = 3', 'location', 'southwest');
+legend('N = 1', 'N = 2', 'N = 3', 'Ideal', 'location', 'southwest');
 set(gca, 'fontsize', font_size);
 xlabel('Frequency (GHz)', 'fontsize', font_size_label);
 ylabel('Phase (Degrees)', 'fontsize', font_size_label)
